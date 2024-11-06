@@ -5,8 +5,7 @@ window.addEventListener("scroll", () => {
   const scrollPosition = window.scrollY; // Get the vertical scroll position
   const windowHeight = window.innerHeight;
 
-  console.log('scrollPosition:', scrollPosition); // Check if scroll position is logged
-
+ 
   if (scrollPosition < windowHeight) {
     // If we are in the first screen area, make the background blue
     document.body.style.backgroundColor = "#007BFF";
