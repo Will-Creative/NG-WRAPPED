@@ -1,25 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<!-- AOS CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Next Gen Ministry Review</title>
 
-<!-- AOS JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <!-- AOS CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+  <!-- AOS JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   
+  <style>
+    body {
+      transition: background-color 0.5s ease;
+    }
+  </style>
 </head>
 
-<style>
+<body>
+  <!-- Example AOS animations -->
+  <div data-aos="fade-up" data-aos-duration="1000">
+    <h1>Welcome to the Next Gen Ministry Review!</h1>
+  </div>
 
-body {
-  transition: background-color 0.5s ease;
-}
+  <div data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="500">
+    <p>Check out our awesome impact this year.</p>
+  </div>
 
+  <!-- Add more content here as you scroll -->
+
+  <script src="script.js"></script>
   
-</style>
-
-
-
-<body> 
-  
-<script src="script.js"></script>
-
+  <script>
+    // Initialize AOS (This makes the animations work)
+    AOS.init();
+  </script>
 </body>
+</html>
