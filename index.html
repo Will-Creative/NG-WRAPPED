@@ -3,18 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scroll Snap Test</title>
+  <title>Scroll Snap Safari Fix</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      scroll-snap-type: y mandatory; /* This tells the body to snap vertically */
+      scroll-snap-type: y mandatory; /* Standard property */
+      -webkit-scroll-snap-type: y mandatory; /* WebKit-specific property for Safari */
       overflow-y: scroll; /* Ensures the page can scroll */
       height: 100vh; /* Full viewport height */
     }
 
     .section {
-      scroll-snap-align: start; /* Each section snaps to the top */
+      scroll-snap-align: start; /* Standard property */
+      -webkit-scroll-snap-align: start; /* WebKit-specific property for Safari */
       height: 100vh; /* Full screen height for each section */
       display: flex;
       justify-content: center;
