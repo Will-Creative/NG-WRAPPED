@@ -31,16 +31,9 @@
       color: #fff;
       position: relative;
       transition: background 1s ease-in-out;
-      opacity: 0;
-      visibility: hidden; /* Hide section initially */
+      opacity: 1; /* Keep section visible */
     }
 
-    .section.visible {
-      opacity: 1;
-      visibility: visible; /* Make section visible when in view */
-    }
-
-    /* Titles inside each section */
     .section h1 {
       font-size: 3rem;
       opacity: 0;
@@ -51,7 +44,6 @@
       opacity: 1; /* Fade in the title when section is in view */
     }
 
-    /* Scroll down arrow and text */
     .scroll-down {
       position: absolute;
       bottom: 20px;
@@ -163,7 +155,7 @@
         const title = entry.target.querySelector('h1');
         
         if (entry.isIntersecting) {
-          // Add visible class to section for smooth fade-in effect
+          // Add visible class to section for smooth fade-in effect on title and scroll-down
           entry.target.classList.add('visible');
           
           // Delay the appearance of the "scroll down" text by 2 seconds
@@ -179,7 +171,7 @@
           // Make the "Scroll down" text invisible when the section is out of view
           scrollDown.style.opacity = 0;
           
-          // Remove visible class when the section goes out of view
+          // Remove visible class when the section goes out of view (keeps background fixed)
           entry.target.classList.remove('visible');
         }
       });
