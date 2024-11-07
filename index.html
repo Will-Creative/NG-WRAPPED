@@ -3,20 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scroll Snap with Animations</title>
-  <link rel="stylesheet" href="styles.css"> <!-- Link your CSS file -->
+  <title>Basic Scrollable Page</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      scroll-snap-type: y mandatory; /* Enables scroll snapping */
+      overflow-y: scroll;
+      height: 100vh; /* Full viewport height */
+    }
+
+    .section {
+      scroll-snap-align: start;
+      height: 100vh; /* Full screen height for each section */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      color: #fff;
+    }
+
+    /* Different background colors for visual distinction */
+    .section:nth-child(1) { background-color: #1abc9c; }
+    .section:nth-child(2) { background-color: #3498db; }
+    .section:nth-child(3) { background-color: #9b59b6; }
+  </style>
 </head>
 <body>
-  <div class="section"><div class="content">Section 1</div></div>
-  <div class="section"><div class="content">Section 2</div></div>
-  <div class="section"><div class="content">Section 3</div></div>
-  <div class="section"><div class="content">Section 4</div></div>
-  <div class="section"><div class="content">Section 5</div></div>
-  <div class="section"><div class="content">Section 6</div></div>
-  <div class="section"><div class="content">Section 7</div></div>
-  <div class="section"><div class="content">Section 8</div></div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="script.js"></script> <!-- Link your JavaScript file -->
+  <div class="section">Section 1</div>
+  <div class="section">Section 2</div>
+  <div class="section">Section 3</div>
 </body>
 </html>
