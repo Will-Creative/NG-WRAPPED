@@ -10,6 +10,7 @@
       padding: 0;
       height: 100vh;
       overflow: hidden;
+      font-family: Arial, sans-serif;
       transition: background 1s ease-in-out; /* Smooth transition for background gradient */
     }
 
@@ -31,6 +32,7 @@
       position: relative;
     }
 
+    /* Scroll down arrow and text */
     .scroll-down {
       position: absolute;
       bottom: 20px;
@@ -130,11 +132,19 @@
     
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
+        const scrollDown = entry.target.querySelector('.scroll-down');
+        
         if (entry.isIntersecting) {
-          // Use data-bg1 and data-bg2 to create a smooth gradient
+          // Make the "Scroll down" text visible
+          scrollDown.style.opacity = 1;
+          
+          // Update the background gradient based on the section data attributes
           const bg1 = entry.target.getAttribute('data-bg1');
           const bg2 = entry.target.getAttribute('data-bg2');
           document.body.style.background = `linear-gradient(to bottom, ${bg1}, ${bg2})`;
+        } else {
+          // Make the "Scroll down" text invisible when the section is out of view
+          scrollDown.style.opacity = 0;
         }
       });
     }, { threshold: 0.5 }); // Trigger when 50% of the section is visible
