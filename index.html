@@ -41,7 +41,7 @@
       background: 
           radial-gradient(circle, rgba(255, 255, 255, 0.1) 20%, rgba(0, 0, 0, 0.1) 50%, rgba(255, 255, 255, 0.1) 80%) repeat;
       pointer-events: none;
-      opacity: 0.5; /* Adjust opacity */
+      opacity: 0.05; /* Adjust opacity */
       animation: noiseAnimation 0.1s infinite linear;
       z-index: 10; /* Ensures overlay stays on top */
     }
@@ -74,6 +74,45 @@
     .section:nth-child(6) { background-color: #2ecc71; }
     .section:nth-child(7) { background-color: #34495e; }
     .section:nth-child(8) { background-color: #8e44ad; }
+
+    /* "Scroll down" text with arrow */
+    .scroll-down {
+      position: absolute;
+      bottom: 20px; /* Position it at the bottom of the section */
+      font-size: 1.5rem;
+      color: #fff;
+      text-align: center;
+      animation: blink 1.5s infinite; /* Slow blinking effect */
+      z-index: 20;
+    }
+
+    .scroll-down .arrow {
+      display: block;
+      font-size: 2rem;
+      margin-top: 5px;
+      animation: bounceArrow 1s infinite; /* Arrow bouncing animation */
+    }
+
+    /* Slow blinking effect */
+    @keyframes blink {
+      0%, 100% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+    }
+
+    /* Arrow bounce effect */
+    @keyframes bounceArrow {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(10px);
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -81,14 +120,62 @@
   <div class="noise-overlay"></div> <!-- This will be the animated noise overlay -->
   
   <div class="scroll-container">
-    <div class="section">Title Section</div>
-    <div class="section">Section 2</div>
-    <div class="section">Section 3</div>
-    <div class="section">Section 4</div>
-    <div class="section">Section 5</div>
-    <div class="section">Section 6</div>
-    <div class="section">Section 7</div>
-    <div class="section">Section 8</div>
+    <div class="section">
+      Title Section
+      <div class="scroll-down">
+        Scroll down
+        <span class="arrow">↓</span>
+      </div>
+    </div>
+    <div class="section">
+      Section 2
+      <div class="scroll-down">
+        Scroll down
+        <span class="arrow">↓</span>
+      </div>
+    </div>
+    <div class="section">
+      Section 3
+      <div class="scroll-down">
+        Scroll down
+        <span class="arrow">↓</span>
+      </div>
+    </div>
+    <div class="section">
+      Section 4
+      <div class="scroll-down">
+        Scroll down
+        <span class="arrow">↓</span>
+      </div>
+    </div>
+    <div class="section">
+      Section 5
+      <div class="scroll-down">
+        Scroll down
+        <span class="arrow">↓</span>
+      </div>
+    </div>
+    <div class="section">
+      Section 6
+      <div class="scroll-down">
+        Scroll down
+        <span class="arrow">↓</span>
+      </div>
+    </div>
+    <div class="section">
+      Section 7
+      <div class="scroll-down">
+        Scroll down
+        <span class="arrow">↓</span>
+      </div>
+    </div>
+    <div class="section">
+      Section 8
+      <div class="scroll-down">
+        Scroll down
+        <span class="arrow">↓</span>
+      </div>
+    </div>
   </div>
 
 </body>
