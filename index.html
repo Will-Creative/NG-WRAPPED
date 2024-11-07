@@ -3,49 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Next Gen Ministry Review</title>
-
-  <!-- AOS CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-
-  <!-- AOS JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-  
-  <style>
-    body {
-      transition: background-color 0.5s ease;
-       min-height: 10000px;
-    }
-    h1 {
-      font-family: 'Helvetica', sans-serif; /* Set font to Helvetica */
-      font-size: 72px; /* Set font size to 72px */
-      text-align: center; /* Center the text */
-      color: #ffffff; /* White text color */
-      margin-top: 50px; /* Add space at the top */
-
-       /* Sticky header styles */
-      position: sticky; /* Make the header sticky */
-      top: 0; /* Stick it to the top of the page */
-      /* background-color: #333; Optional: Add a background color for visibility */
-      z-index: 1000; /* Ensure the header stays above other content */
-      padding: 10px 0; /* Add some padding to make it look better */
-    }
-  </style>
+  <title>Scroll Snap with Animations</title>
+  <link rel="stylesheet" href="styles.css"> <!-- Link your CSS file -->
 </head>
-
 <body>
-  <!-- Example AOS animations -->
-  <div data-aos="fade-up" data-aos-duration="10000">
-    <h1>Welcome to the Next Gen Ministry Review!</h1>
-  </div>
-
-  <!-- Add more content here as you scroll -->
-
-  <script src="script.js"></script>
-  
-  <script>
-    // Initialize AOS (This makes the animations work)
-    AOS.init();
-  </script>
+  <div class="section"><div class="content">Section 1</div></div>
+  <div class="section"><div class="content">Section 2</div></div>
+  <div class="section"><div class="content">Section 3</div></div>
+  <div class="section"><div class="content">Section 4</div></div>
+  <div class="section"><div class="content">Section 5</div></div>
+  <div class="section"><div class="content">Section 6</div></div>
+  <div class="section"><div class="content">Section 7</div></div>
+  <div class="section"><div class="content">Section 8</div></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="script.js"></script> <!-- Link your JavaScript file -->
 </body>
 </html>
