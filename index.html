@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Basic Scrollable Page</title>
+  <title>Scroll Snap Test</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      scroll-snap-type: y mandatory; /* Enables scroll snapping */
-      overflow-y: scroll;
+      scroll-snap-type: y mandatory; /* This tells the body to snap vertically */
+      overflow-y: scroll; /* Ensures the page can scroll */
       height: 100vh; /* Full viewport height */
     }
 
     .section {
-      scroll-snap-align: start;
+      scroll-snap-align: start; /* Each section snaps to the top */
       height: 100vh; /* Full screen height for each section */
       display: flex;
       justify-content: center;
