@@ -1,4 +1,4 @@
-gsap.registerPlugin(ScrollTrigger);
+/* gsap.registerPlugin(ScrollTrigger);
 
 document.querySelectorAll('.section').forEach((section, index) => {
   gsap.fromTo(
@@ -16,4 +16,4 @@ document.querySelectorAll('.section').forEach((section, index) => {
       duration: 1,
     }
   );
-});
+}); */
