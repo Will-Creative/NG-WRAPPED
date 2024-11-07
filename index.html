@@ -3,15 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>8 Sections Scroll Snap</title>
+  <title>Smooth Gradient Background Scroll</title>
   <style>
     body {
       margin: 0;
       padding: 0;
       height: 100vh;
       overflow: hidden;
-      position: relative;
-      transition: background-color 0.5s ease; /* Smooth background color transition */
+      transition: background 1s ease-in-out; /* Smooth transition for background gradient */
     }
 
     .scroll-container {
@@ -19,7 +18,6 @@
       overflow-y: scroll;
       scroll-snap-type: y mandatory;
       -webkit-overflow-scrolling: touch;
-      position: relative;
     }
 
     .section {
@@ -71,135 +69,78 @@
     .section:nth-child(6) { background-color: #2ecc71; }
     .section:nth-child(7) { background-color: #34495e; }
     .section:nth-child(8) { background-color: #8e44ad; }
-
-    /* Hidden by default, fade in when visible */
-    .fade-in {
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-    }
-
-    .fade-in.visible {
-      opacity: 1;
-    }
   </style>
 </head>
 <body>
 
   <div class="scroll-container">
-    <div class="section">
-      <div class="fade-in">
-        <h2>Title Section</h2>
-        <p>This is some content inside the first section.</p>
-      </div>
+    <div class="section" data-bg1="#1abc9c" data-bg2="#3498db">
       <div class="scroll-down">
         Scroll down
         <span class="arrow">↓</span>
       </div>
     </div>
-    <div class="section">
-      <div class="fade-in">
-        <h2>Section 2</h2>
-        <p>More content here.</p>
-      </div>
+    <div class="section" data-bg1="#3498db" data-bg2="#9b59b6">
       <div class="scroll-down">
         Scroll down
         <span class="arrow">↓</span>
       </div>
     </div>
-    <div class="section">
-      <div class="fade-in">
-        <h2>Section 3</h2>
-        <p>Even more content here.</p>
-      </div>
+    <div class="section" data-bg1="#9b59b6" data-bg2="#e74c3c">
       <div class="scroll-down">
         Scroll down
         <span class="arrow">↓</span>
       </div>
     </div>
-    <div class="section">
-      <div class="fade-in">
-        <h2>Section 4</h2>
-        <p>Content for section 4.</p>
-      </div>
+    <div class="section" data-bg1="#e74c3c" data-bg2="#f39c12">
       <div class="scroll-down">
         Scroll down
         <span class="arrow">↓</span>
       </div>
     </div>
-    <div class="section">
-      <div class="fade-in">
-        <h2>Section 5</h2>
-        <p>Content for section 5.</p>
-      </div>
+    <div class="section" data-bg1="#f39c12" data-bg2="#2ecc71">
       <div class="scroll-down">
         Scroll down
         <span class="arrow">↓</span>
       </div>
     </div>
-    <div class="section">
-      <div class="fade-in">
-        <h2>Section 6</h2>
-        <p>Content for section 6.</p>
-      </div>
+    <div class="section" data-bg1="#2ecc71" data-bg2="#34495e">
       <div class="scroll-down">
         Scroll down
         <span class="arrow">↓</span>
       </div>
     </div>
-    <div class="section">
-      <div class="fade-in">
-        <h2>Section 7</h2>
-        <p>Content for section 7.</p>
-      </div>
+    <div class="section" data-bg1="#34495e" data-bg2="#8e44ad">
       <div class="scroll-down">
         Scroll down
         <span class="arrow">↓</span>
       </div>
     </div>
-    <div class="section">
-      <div class="fade-in">
-        <h2>Section 8</h2>
-        <p>Content for section 8.</p>
+    <div class="section" data-bg1="#8e44ad" data-bg2="#1abc9c">
+      <div class="scroll-down">
+        Scroll down
+        <span class="arrow">↓</span>
       </div>
     </div>
   </div>
 
   <script>
-    // Intersection Observer to detect when elements are in view
-    const fadeInElements = document.querySelectorAll('.fade-in');
-
-    const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible'); // Add visible class to fade in
-        } else {
-          entry.target.classList.remove('visible'); // Remove visible class to fade out
-        }
-      });
-    }, { threshold: 0.5 }); // Trigger when 50% of the element is in view
-
-    fadeInElements.forEach(element => {
-      observer.observe(element);
-    });
-
-    // Change the background color as you scroll
+    // Intersection Observer to detect when sections are in view
     const sections = document.querySelectorAll('.section');
-    const sectionColors = [
-      '#1abc9c', '#3498db', '#9b59b6', '#e74c3c', '#f39c12',
-      '#2ecc71', '#34495e', '#8e44ad'
-    ];
-
-    const backgroundObserver = new IntersectionObserver((entries) => {
+    
+    const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        const index = Array.from(sections).indexOf(entry.target);
         if (entry.isIntersecting) {
-          document.body.style.backgroundColor = sectionColors[index];
+          // Use data-bg1 and data-bg2 to create a smooth gradient
+          const bg1 = entry.target.getAttribute('data-bg1');
+          const bg2 = entry.target.getAttribute('data-bg2');
+          document.body.style.background = `linear-gradient(to bottom, ${bg1}, ${bg2})`;
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.5 }); // Trigger when 50% of the section is visible
 
     sections.forEach(section => {
-      backgroundObserver.observe(section);
+      observer.observe(section);
     });
   </script>
 </body>
