@@ -30,12 +30,6 @@
       font-size: 2rem;
       color: #fff;
       position: relative;
-      opacity: 0; /* Initially hidden */
-      transition: opacity 1s ease-in-out; /* Smooth fade transition */
-    }
-
-    .section.visible {
-      opacity: 1; /* Fade in when section becomes visible */
     }
 
     .noise-overlay {
@@ -59,6 +53,7 @@
       100% { background-position: 20% 20%; }
     }
 
+    /* Scroll down text and arrow */
     .scroll-down {
       position: absolute;
       bottom: 20px;
@@ -68,7 +63,7 @@
       opacity: 0;
       animation: blink 1.5s infinite;
       z-index: 20;
-      transition: opacity 1s ease-in-out; /* Fade in/out transition */
+      transition: opacity 1s ease-in-out;
     }
 
     .scroll-down .arrow {
@@ -97,6 +92,16 @@
     .section:nth-child(6) { background-color: #2ecc71; }
     .section:nth-child(7) { background-color: #34495e; }
     .section:nth-child(8) { background-color: #8e44ad; }
+
+    /* Hidden by default, fade in when visible */
+    .fade-in {
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+    }
   </style>
 </head>
 <body>
@@ -105,56 +110,80 @@
 
   <div class="scroll-container">
     <div class="section">
-      Title Section
+      <div class="fade-in">
+        <h2>Title Section</h2>
+        <p>This is some content inside the first section.</p>
+      </div>
       <div class="scroll-down">
         Scroll down
         <span class="arrow">↓</span>
       </div>
     </div>
     <div class="section">
-      Section 2
+      <div class="fade-in">
+        <h2>Section 2</h2>
+        <p>More content here.</p>
+      </div>
       <div class="scroll-down">
         Scroll down
         <span class="arrow">↓</span>
       </div>
     </div>
     <div class="section">
-      Section 3
+      <div class="fade-in">
+        <h2>Section 3</h2>
+        <p>Even more content here.</p>
+      </div>
       <div class="scroll-down">
         Scroll down
         <span class="arrow">↓</span>
       </div>
     </div>
     <div class="section">
-      Section 4
+      <div class="fade-in">
+        <h2>Section 4</h2>
+        <p>Content for section 4.</p>
+      </div>
       <div class="scroll-down">
         Scroll down
         <span class="arrow">↓</span>
       </div>
     </div>
     <div class="section">
-      Section 5
+      <div class="fade-in">
+        <h2>Section 5</h2>
+        <p>Content for section 5.</p>
+      </div>
       <div class="scroll-down">
         Scroll down
         <span class="arrow">↓</span>
       </div>
     </div>
     <div class="section">
-      Section 6
+      <div class="fade-in">
+        <h2>Section 6</h2>
+        <p>Content for section 6.</p>
+      </div>
       <div class="scroll-down">
         Scroll down
         <span class="arrow">↓</span>
       </div>
     </div>
     <div class="section">
-      Section 7
+      <div class="fade-in">
+        <h2>Section 7</h2>
+        <p>Content for section 7.</p>
+      </div>
       <div class="scroll-down">
         Scroll down
         <span class="arrow">↓</span>
       </div>
     </div>
     <div class="section">
-      Section 8
+      <div class="fade-in">
+        <h2>Section 8</h2>
+        <p>Content for section 8.</p>
+      </div>
       <div class="scroll-down">
         Scroll down
         <span class="arrow">↓</span>
@@ -163,21 +192,21 @@
   </div>
 
   <script>
-    // Intersection Observer to detect when sections are in view
-    const sections = document.querySelectorAll('.section');
+    // Intersection Observer to detect when elements are in view
+    const fadeInElements = document.querySelectorAll('.fade-in');
 
     const observer = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+          entry.target.classList.add('visible'); // Add visible class to fade in
         } else {
-          entry.target.classList.remove('visible');
+          entry.target.classList.remove('visible'); // Remove visible class to fade out
         }
       });
-    }, { threshold: 0.9 }); // Trigger when 90% of the section is in view
+    }, { threshold: 0.5 }); // Trigger when 50% of the element is in view
 
-    sections.forEach(section => {
-      observer.observe(section);
+    fadeInElements.forEach(element => {
+      observer.observe(element);
     });
   </script>
 </body>
