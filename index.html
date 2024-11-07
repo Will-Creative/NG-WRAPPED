@@ -11,7 +11,6 @@
       height: 100vh;
       overflow: hidden;
       font-family: Arial, sans-serif;
-      transition: background 1s ease-in-out; /* Smooth transition for background gradient */
     }
 
     .scroll-container {
@@ -19,6 +18,7 @@
       overflow-y: scroll;
       scroll-snap-type: y mandatory;
       -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
     }
 
     .section {
@@ -30,6 +30,7 @@
       font-size: 2rem;
       color: #fff;
       position: relative;
+      transition: background 1s ease-in-out;
     }
 
     /* Scroll down arrow and text */
@@ -77,6 +78,7 @@
 
   <div class="scroll-container">
     <div class="section" data-bg1="#1abc9c" data-bg2="#3498db">
+      <h1>Title</h1>
       <div class="scroll-down">
         Scroll down
         <span class="arrow">↓</span>
@@ -141,7 +143,7 @@
           // Update the background gradient based on the section data attributes
           const bg1 = entry.target.getAttribute('data-bg1');
           const bg2 = entry.target.getAttribute('data-bg2');
-          document.body.style.background = `linear-gradient(to bottom, ${bg1}, ${bg2})`;
+          entry.target.style.background = `linear-gradient(to bottom, ${bg1}, ${bg2})`;
         } else {
           // Make the "Scroll down" text invisible when the section is out of view
           scrollDown.style.opacity = 0;
