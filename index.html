@@ -85,11 +85,23 @@
     .section:nth-child(6) { background-color: #2ecc71; }
     .section:nth-child(7) { background-color: #34495e; }
     .section:nth-child(8) { background-color: #8e44ad; }
+
+    #grain-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 10;
+    }
   </style>
-  <!-- Corrected Grained.js CDN link -->
+  <!-- Grained.js CDN link -->
   <script src="https://cdn.jsdelivr.net/gh/sarathsaleem/grained@master/grained.js"></script>
 </head>
 <body>
+
+  <div id="grain-overlay"></div> <!-- Corrected ID for grain overlay -->
 
   <div class="scroll-container">
     <div class="section" data-bg1="#1abc9c" data-bg2="#3498db">
@@ -173,31 +185,33 @@
           const bg2 = entry.target.getAttribute('data-bg2');
           entry.target.style.background = `linear-gradient(to bottom, ${bg1}, ${bg2})`;
         } else {
-          // Make the "Scroll down" text fade out with a specific fade-out speed when the section is out of view
+          // Make the "Scroll down" text fade out with a specific fade-out speed when not in view
           scrollDown.style.opacity = 0;
-          
-          // Remove visible class when the section goes out of view (keeps background fixed)
           entry.target.classList.remove('visible');
         }
       });
-    }, { threshold: 0.5 }); // Trigger when 50% of the section is visible
+    }, {
+      threshold: 0.5 // Trigger when 50% of the section is visible
+    });
 
+    // Attach observer to each section
     sections.forEach(section => {
       observer.observe(section);
     });
 
+    // Grained.js implementation
     window.onload = function() {
-  // Apply the grain effect to the body or another element if needed
-  grained('body', {
-    animate: true,
-    patternWidth: 100,
-    patternHeight: 100,
-    grainOpacity: 0.1, // Adjust for a subtle grain effect
-    grainDensity: 1,   // Density of the grain pattern
-    grainWidth: 1,
-    grainHeight: 1
-  });
-};
+      // Apply the grain effect to the #grain-overlay element
+      grained('#grain-overlay', {
+        animate: true,
+        patternWidth: 100,
+        patternHeight: 100,
+        grainOpacity: 0.1, // Adjust for a subtle grain effect
+        grainDensity: 1,   // Density of the grain pattern
+        grainWidth: 1,
+        grainHeight: 1
+      });
+    };
   </script>
 </body>
 </html>
