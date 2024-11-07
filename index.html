@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Smooth Gradient Background Scroll</title>
   <style>
-    /* Include the SVG */
-    #grain {
-      display: none; /* Hide the SVG */
+    :root {
+      --fade-in-speed: 1s; /* Speed for fade-in */
+      --fade-out-speed: 0.5s; /* Speed for fade-out */
     }
 
     body {
@@ -36,23 +36,9 @@
       color: #fff;
       position: relative;
       transition: background 1s ease-in-out;
+      opacity: 1; /* Keep section visible */
     }
 
-    /* Grain overlay */
-    .grain-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none; /* Allow interactions with the content */
-      background: white; /* Fallback */
-      background-image: url('#grain');
-      mix-blend-mode: overlay;
-      opacity: 0.3; /* Adjust opacity for effect */
-    }
-
-    /* Other styles remain unchanged */
     .section h1 {
       font-size: 3rem;
       opacity: 0;
@@ -81,16 +67,6 @@
       animation: bounceArrow 1s infinite;
     }
 
-    /* Background colors for each section */
-    .section:nth-child(1) { background-color: #1abc9c; }
-    .section:nth-child(2) { background-color: #3498db; }
-    .section:nth-child(3) { background-color: #9b59b6; }
-    .section:nth-child(4) { background-color: #e74c3c; }
-    .section:nth-child(5) { background-color: #f39c12; }
-    .section:nth-child(6) { background-color: #2ecc71; }
-    .section:nth-child(7) { background-color: #34495e; }
-    .section:nth-child(8) { background-color: #8e44ad; }
-
     @keyframes blink {
       0%, 100% { opacity: 0; }
       50% { opacity: 1; }
@@ -100,19 +76,20 @@
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(10px); }
     }
+
+    .section:nth-child(1) { background-color: #1abc9c; }
+    .section:nth-child(2) { background-color: #3498db; }
+    .section:nth-child(3) { background-color: #9b59b6; }
+    .section:nth-child(4) { background-color: #e74c3c; }
+    .section:nth-child(5) { background-color: #f39c12; }
+    .section:nth-child(6) { background-color: #2ecc71; }
+    .section:nth-child(7) { background-color: #34495e; }
+    .section:nth-child(8) { background-color: #8e44ad; }
   </style>
+  <!-- Corrected Grained.js CDN link -->
+  <script src="https://cdn.jsdelivr.net/npm/grained.js@2.0.0/dist/grained.min.js"></script>
 </head>
 <body>
-
-  <!-- SVG for grain effect -->
-  <svg xmlns="http://www.w3.org/2000/svg" id="grain" width="0" height="0">
-    <filter id="noise">
-      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch" />
-      <feColorMatrix type="saturate" values="0" />
-    </filter>
-  </svg>
-
-  <div class="grain-overlay"></div>
 
   <div class="scroll-container">
     <div class="section" data-bg1="#1abc9c" data-bg2="#3498db">
@@ -122,8 +99,102 @@
         <span class="arrow">↓</span>
       </div>
     </div>
-    <!-- Other sections as before -->
+    <div class="section" data-bg1="#3498db" data-bg2="#9b59b6">
+      <h1>Section 2 Title</h1>
+      <div class="scroll-down">
+        Scroll down
+        <span class="arrow">↓</span>
+      </div>
+    </div>
+    <div class="section" data-bg1="#9b59b6" data-bg2="#e74c3c">
+      <h1>Section 3 Title</h1>
+      <div class="scroll-down">
+        Scroll down
+        <span class="arrow">↓</span>
+      </div>
+    </div>
+    <div class="section" data-bg1="#e74c3c" data-bg2="#f39c12">
+      <h1>Section 4 Title</h1>
+      <div class="scroll-down">
+        Scroll down
+        <span class="arrow">↓</span>
+      </div>
+    </div>
+    <div class="section" data-bg1="#f39c12" data-bg2="#2ecc71">
+      <h1>Section 5 Title</h1>
+      <div class="scroll-down">
+        Scroll down
+        <span class="arrow">↓</span>
+      </div>
+    </div>
+    <div class="section" data-bg1="#2ecc71" data-bg2="#34495e">
+      <h1>Section 6 Title</h1>
+      <div class="scroll-down">
+        Scroll down
+        <span class="arrow">↓</span>
+      </div>
+    </div>
+    <div class="section" data-bg1="#34495e" data-bg2="#8e44ad">
+      <h1>Section 7 Title</h1>
+      <div class="scroll-down">
+        Scroll down
+        <span class="arrow">↓</span>
+      </div>
+    </div>
+    <div class="section" data-bg1="#8e44ad" data-bg2="#1abc9c">
+      <h1>Section 8 Title</h1>
+      <div class="scroll-down">
+        Scroll down
+        <span class="arrow">↓</span>
+      </div>
+    </div>
   </div>
 
+  <script>
+    // Intersection Observer to detect when sections are in view
+    const sections = document.querySelectorAll('.section');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const scrollDown = entry.target.querySelector('.scroll-down');
+        const title = entry.target.querySelector('h1');
+        
+        if (entry.isIntersecting) {
+          // Add visible class to section for smooth fade-in effect on title and scroll-down
+          entry.target.classList.add('visible');
+          
+          // Delay the appearance of the "scroll down" text by 2 seconds
+          setTimeout(() => {
+            scrollDown.style.opacity = 1;
+          }, 2000); // 2-second delay
+
+          // Update the background gradient based on the section data attributes
+          const bg1 = entry.target.getAttribute('data-bg1');
+          const bg2 = entry.target.getAttribute('data-bg2');
+          entry.target.style.background = `linear-gradient(to bottom, ${bg1}, ${bg2})`;
+        } else {
+          // Make the "Scroll down" text fade out with a specific fade-out speed when the section is out of view
+          scrollDown.style.opacity = 0;
+          
+          // Remove visible class when the section goes out of view (keeps background fixed)
+          entry.target.classList.remove('visible');
+        }
+      });
+    }, { threshold: 0.5 }); // Trigger when 50% of the section is visible
+
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+
+    // Apply the grain effect to the body
+    window.onload = function () {
+      grained({
+        element: "body", // Apply to the whole body or another specific element
+        frequency: 10,    // Controls grain frequency
+        intensity: 10,    // Controls grain intensity
+        opacity: 0.2,     // Controls grain opacity
+      });
+    };
+  </script>
 </body>
 </html>
