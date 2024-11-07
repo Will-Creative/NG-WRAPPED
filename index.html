@@ -31,6 +31,24 @@
       color: #fff;
       position: relative;
       transition: background 1s ease-in-out;
+      opacity: 0;
+      visibility: hidden; /* Hide section initially */
+    }
+
+    .section.visible {
+      opacity: 1;
+      visibility: visible; /* Make section visible when in view */
+    }
+
+    /* Titles inside each section */
+    .section h1 {
+      font-size: 3rem;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .section.visible h1 {
+      opacity: 1; /* Fade in the title when section is in view */
     }
 
     /* Scroll down arrow and text */
@@ -78,49 +96,56 @@
 
   <div class="scroll-container">
     <div class="section" data-bg1="#1abc9c" data-bg2="#3498db">
-      <h1>Title</h1>
+      <h1>Section 1 Title</h1>
       <div class="scroll-down">
         Scroll down
         <span class="arrow">↓</span>
       </div>
     </div>
     <div class="section" data-bg1="#3498db" data-bg2="#9b59b6">
+      <h1>Section 2 Title</h1>
       <div class="scroll-down">
         Scroll down
         <span class="arrow">↓</span>
       </div>
     </div>
     <div class="section" data-bg1="#9b59b6" data-bg2="#e74c3c">
+      <h1>Section 3 Title</h1>
       <div class="scroll-down">
         Scroll down
         <span class="arrow">↓</span>
       </div>
     </div>
     <div class="section" data-bg1="#e74c3c" data-bg2="#f39c12">
+      <h1>Section 4 Title</h1>
       <div class="scroll-down">
         Scroll down
         <span class="arrow">↓</span>
       </div>
     </div>
     <div class="section" data-bg1="#f39c12" data-bg2="#2ecc71">
+      <h1>Section 5 Title</h1>
       <div class="scroll-down">
         Scroll down
         <span class="arrow">↓</span>
       </div>
     </div>
     <div class="section" data-bg1="#2ecc71" data-bg2="#34495e">
+      <h1>Section 6 Title</h1>
       <div class="scroll-down">
         Scroll down
         <span class="arrow">↓</span>
       </div>
     </div>
     <div class="section" data-bg1="#34495e" data-bg2="#8e44ad">
+      <h1>Section 7 Title</h1>
       <div class="scroll-down">
         Scroll down
         <span class="arrow">↓</span>
       </div>
     </div>
     <div class="section" data-bg1="#8e44ad" data-bg2="#1abc9c">
+      <h1>Section 8 Title</h1>
       <div class="scroll-down">
         Scroll down
         <span class="arrow">↓</span>
@@ -135,11 +160,17 @@
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         const scrollDown = entry.target.querySelector('.scroll-down');
+        const title = entry.target.querySelector('h1');
         
         if (entry.isIntersecting) {
-          // Make the "Scroll down" text visible
-          scrollDown.style.opacity = 1;
+          // Add visible class to section for smooth fade-in effect
+          entry.target.classList.add('visible');
           
+          // Delay the appearance of the "scroll down" text by 2 seconds
+          setTimeout(() => {
+            scrollDown.style.opacity = 1;
+          }, 2000); // 2-second delay
+
           // Update the background gradient based on the section data attributes
           const bg1 = entry.target.getAttribute('data-bg1');
           const bg2 = entry.target.getAttribute('data-bg2');
@@ -147,6 +178,9 @@
         } else {
           // Make the "Scroll down" text invisible when the section is out of view
           scrollDown.style.opacity = 0;
+          
+          // Remove visible class when the section goes out of view
+          entry.target.classList.remove('visible');
         }
       });
     }, { threshold: 0.5 }); // Trigger when 50% of the section is visible
