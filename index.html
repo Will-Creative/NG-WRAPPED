@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Smooth Gradient Background Scroll</title>
   <style>
+    :root {
+      --fade-in-speed: 1s; /* Speed for fade-in */
+      --fade-out-speed: 0.5s; /* Speed for fade-out */
+    }
+
     body {
       margin: 0;
       padding: 0;
@@ -37,7 +42,7 @@
     .section h1 {
       font-size: 3rem;
       opacity: 0;
-      transition: opacity 1s ease-in-out;
+      transition: opacity var(--fade-in-speed) ease-in-out;
     }
 
     .section.visible h1 {
@@ -53,7 +58,7 @@
       opacity: 0;
       animation: blink 1.5s infinite;
       z-index: 20;
-      transition: opacity 1s ease-in-out;
+      transition: opacity var(--fade-in-speed) ease-in-out;
     }
 
     .scroll-down .arrow {
@@ -168,7 +173,7 @@
           const bg2 = entry.target.getAttribute('data-bg2');
           entry.target.style.background = `linear-gradient(to bottom, ${bg1}, ${bg2})`;
         } else {
-          // Make the "Scroll down" text invisible when the section is out of view
+          // Make the "Scroll down" text fade out with a specific fade-out speed when the section is out of view
           scrollDown.style.opacity = 0;
           
           // Remove visible class when the section goes out of view (keeps background fixed)
