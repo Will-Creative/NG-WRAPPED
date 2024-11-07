@@ -10,6 +10,7 @@
       padding: 0;
       height: 100vh;
       overflow: hidden; /* Prevents body from scrolling */
+      position: relative; /* Ensure absolute positioning of overlay works correctly */
     }
 
     .scroll-container {
@@ -17,6 +18,7 @@
       overflow-y: scroll; /* Makes the container scrollable */
       scroll-snap-type: y mandatory; /* Enables scroll snapping */
       -webkit-overflow-scrolling: touch; /* Enhances scrolling on iOS */
+      position: relative; /* Ensures child elements stack correctly */
     }
 
     .section {
@@ -27,39 +29,41 @@
       align-items: center;
       font-size: 2rem;
       color: #fff;
+      position: relative; /* Ensure content is above noise overlay */
     }
 
     .noise-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle, rgba(255, 255, 255, 0.1) 20%, rgba(0, 0, 0, 0.1) 50%, rgba(255, 255, 255, 0.1) 80%) repeat;
-            pointer-events: none;
-            opacity: 0.05; /* Adjust opacity */
-            animation: noiseAnimation 0.1s infinite linear;
-        }
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+          radial-gradient(circle, rgba(255, 255, 255, 0.1) 20%, rgba(0, 0, 0, 0.1) 50%, rgba(255, 255, 255, 0.1) 80%) repeat;
+      pointer-events: none;
+      opacity: 0.05; /* Adjust opacity */
+      animation: noiseAnimation 0.1s infinite linear;
+      z-index: 10; /* Ensures overlay stays on top */
+    }
 
-        /* Keyframes to simulate random noise */
-        @keyframes noiseAnimation {
-            0% {
-                background-position: 0 0;
-            }
-            25% {
-                background-position: 5% 5%;
-            }
-            50% {
-                background-position: 10% 10%;
-            }
-            75% {
-                background-position: 15% 15%;
-            }
-            100% {
-                background-position: 20% 20%;
-            }
-        }
+    /* Keyframes to simulate random noise */
+    @keyframes noiseAnimation {
+      0% {
+        background-position: 0 0;
+      }
+      25% {
+        background-position: 5% 5%;
+      }
+      50% {
+        background-position: 10% 10%;
+      }
+      75% {
+        background-position: 15% 15%;
+      }
+      100% {
+        background-position: 20% 20%;
+      }
+    }
 
     /* Background colors for each section */
     .section:nth-child(1) { background-color: #1abc9c; }
@@ -74,14 +78,10 @@
 </head>
 <body>
 
-  <div class="noise-overlay"></div>
+  <div class="noise-overlay"></div> <!-- This will be the animated noise overlay -->
   
   <div class="scroll-container">
-    <div class="section">
-      
-      Title Section
-      
-    </div>
+    <div class="section">Title Section</div>
     <div class="section">Section 2</div>
     <div class="section">Section 3</div>
     <div class="section">Section 4</div>
@@ -90,5 +90,6 @@
     <div class="section">Section 7</div>
     <div class="section">Section 8</div>
   </div>
+
 </body>
 </html>
