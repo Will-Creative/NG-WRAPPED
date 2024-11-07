@@ -5,6 +5,7 @@ body {
   scroll-snap-type: y mandatory;
   overflow-y: scroll;
   height: 100vh;
+  min-height: 200vh;
 }
 
 .section {
