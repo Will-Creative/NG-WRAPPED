@@ -186,18 +186,18 @@
       observer.observe(section);
     });
 
-    // Apply the grain effect to the body
     window.onload = function() {
-      grained('.grain-overlay', {
-        animate: true,
-        patternWidth: 100,
-        patternHeight: 100,
-        grainOpacity: 0.2, // Adjust for strength
-        grainDensity: 1,   // Adjust for how much grain there is
-        grainWidth: 1,     // Adjust for the size of the grain particles
-        grainHeight: 1     // Adjust for the size of the grain particles
-      });
-    };
+  // Apply the grain effect to the body or another element if needed
+  grained('body', {
+    animate: true,
+    patternWidth: 100,
+    patternHeight: 100,
+    grainOpacity: 0.1, // Adjust for a subtle grain effect
+    grainDensity: 1,   // Density of the grain pattern
+    grainWidth: 1,
+    grainHeight: 1
+  });
+};
   </script>
 </body>
 </html>
