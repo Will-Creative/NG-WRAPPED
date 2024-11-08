@@ -19,7 +19,7 @@
     body {
       display: flex;
       flex-direction: column;
-      height: 100vh;
+      height: 100%;
       overflow-y: scroll;
       scroll-snap-type: y mandatory;
       scroll-behavior: smooth;
@@ -29,18 +29,13 @@
       height: 100vh;
       scroll-snap-align: start;
       position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .text-container {
       z-index: 100;
-      width: 100vw;
-      height: 100vh;
-      display: flex;
-      position: absolute;
-      top: 0;
-      left: 0;
-      justify-content: center;
-      align-items: center;
       font-size: 96px;
       color: white;
       opacity: 0.8;
@@ -61,6 +56,20 @@
       --blending: hard-light;
     }
 
+    /* Gradient Background applied to body */
+    body {
+      background: linear-gradient(40deg, var(--color-bg1), var(--color-bg2));
+      background-size: 200% 200%;
+      animation: gradientShift 30s ease infinite;
+    }
+
+    /* Keyframes for Gradient Animation */
+    @keyframes gradientShift {
+      0% { background-position: 0% 0%; }
+      50% { background-position: 100% 100%; }
+      100% { background-position: 0% 0%; }
+    }
+
     /* Keyframes for Animation */
     @keyframes moveVertical {
       0% { transform: translateY(-50%); }
@@ -68,23 +77,19 @@
       100% { transform: translateY(-50%); }
     }
 
-    /* Gradient Background */
-    .gradient-bg {
-      width: 100vw;
-      height: 100vh;
-      position: relative;
-      overflow: hidden;
-      background: linear-gradient(40deg, var(--color-bg1), var(--color-bg2));
-      top: 0;
-      left: 0;
-    }
-
-    .gradients-container {
-      filter: url(#goo) blur(40px);
+    /* Interactive Background Animation */
+    .interactive {
+      position: absolute;
+      background: radial-gradient(circle at center, rgba(var(--color-interactive), 0.8) 0, rgba(var(--color-interactive), 0) 50%) no-repeat;
+      mix-blend-mode: var(--blending);
       width: 100%;
       height: 100%;
+      top: -50%;
+      left: -50%;
+      opacity: 0.7;
     }
 
+    /* Shapes for Background */
     .g1, .g2, .g3, .g4, .g5 {
       position: absolute;
       background: radial-gradient(circle at center, rgba(var(--color1), 0.8) 0, rgba(var(--color1), 0) 50%) no-repeat;
@@ -97,131 +102,103 @@
       animation: moveVertical 30s ease infinite;
       opacity: 1;
     }
-
-    /* Interactive background that moves */
-    .interactive {
-      position: absolute;
-      background: radial-gradient(circle at center, rgba(var(--color-interactive), 0.8) 0, rgba(var(--color-interactive), 0) 50%) no-repeat;
-      mix-blend-mode: var(--blending);
-      width: 100%;
-      height: 100%;
-      top: -50%;
-      left: -50%;
-      opacity: 0.7;
-    }
   </style>
 </head>
 <body>
 
   <!-- Scrollable Sections -->
   <section id="section1">
-    <div class="gradient-bg">
-      <div class="gradients-container">
-        <div class="g1"></div>
-        <div class="g2"></div>
-        <div class="g3"></div>
-        <div class="g4"></div>
-        <div class="g5"></div>
-        <div class="interactive"></div>
-      </div>
+    <div class="gradients-container">
+      <div class="g1"></div>
+      <div class="g2"></div>
+      <div class="g3"></div>
+      <div class="g4"></div>
+      <div class="g5"></div>
+      <div class="interactive"></div>
     </div>
     <div class="text-container">Section 1</div>
   </section>
 
   <section id="section2">
-    <div class="gradient-bg">
-      <div class="gradients-container">
-        <div class="g1"></div>
-        <div class="g2"></div>
-        <div class="g3"></div>
-        <div class="g4"></div>
-        <div class="g5"></div>
-        <div class="interactive"></div>
-      </div>
+    <div class="gradients-container">
+      <div class="g1"></div>
+      <div class="g2"></div>
+      <div class="g3"></div>
+      <div class="g4"></div>
+      <div class="g5"></div>
+      <div class="interactive"></div>
     </div>
     <div class="text-container">Section 2</div>
   </section>
 
   <section id="section3">
-    <div class="gradient-bg">
-      <div class="gradients-container">
-        <div class="g1"></div>
-        <div class="g2"></div>
-        <div class="g3"></div>
-        <div class="g4"></div>
-        <div class="g5"></div>
-        <div class="interactive"></div>
-      </div>
+    <div class="gradients-container">
+      <div class="g1"></div>
+      <div class="g2"></div>
+      <div class="g3"></div>
+      <div class="g4"></div>
+      <div class="g5"></div>
+      <div class="interactive"></div>
     </div>
     <div class="text-container">Section 3</div>
   </section>
 
   <section id="section4">
-    <div class="gradient-bg">
-      <div class="gradients-container">
-        <div class="g1"></div>
-        <div class="g2"></div>
-        <div class="g3"></div>
-        <div class="g4"></div>
-        <div class="g5"></div>
-        <div class="interactive"></div>
-      </div>
+    <div class="gradients-container">
+      <div class="g1"></div>
+      <div class="g2"></div>
+      <div class="g3"></div>
+      <div class="g4"></div>
+      <div class="g5"></div>
+      <div class="interactive"></div>
     </div>
     <div class="text-container">Section 4</div>
   </section>
 
   <section id="section5">
-    <div class="gradient-bg">
-      <div class="gradients-container">
-        <div class="g1"></div>
-        <div class="g2"></div>
-        <div class="g3"></div>
-        <div class="g4"></div>
-        <div class="g5"></div>
-        <div class="interactive"></div>
-      </div>
+    <div class="gradients-container">
+      <div class="g1"></div>
+      <div class="g2"></div>
+      <div class="g3"></div>
+      <div class="g4"></div>
+      <div class="g5"></div>
+      <div class="interactive"></div>
     </div>
     <div class="text-container">Section 5</div>
   </section>
 
   <section id="section6">
-    <div class="gradient-bg">
-      <div class="gradients-container">
-        <div class="g1"></div>
-        <div class="g2"></div>
-        <div class="g3"></div>
-        <div class="g4"></div>
-        <div class="g5"></div>
-        <div class="interactive"></div>
-      </div>
+    <div class="gradients-container">
+      <div class="g1"></div>
+      <div class="g2"></div>
+      <div class="g3"></div>
+      <div class="g4"></div>
+      <div class="g5"></div>
+      <div class="interactive"></div>
     </div>
     <div class="text-container">Section 6</div>
   </section>
 
   <section id="section7">
-    <div class="gradient-bg">
-      <div class="gradients-container">
-        <div class="g1"></div>
-        <div class="g2"></div>
-        <div class="g3"></div>
-        <div class="g4"></div>
-        <div class="g5"></div>
-        <div class="interactive"></div>
-      </div>
+    <div class="gradients-container">
+      <div class="g1"></div>
+      <div class="g2"></div>
+      <div class="g3"></div>
+      <div class="g4"></div>
+      <div class="g5"></div>
+      <div class="interactive"></div>
     </div>
     <div class="text-container">Section 7</div>
   </section>
 
   <section id="section8">
-    <div class="gradient-bg">
-      <div class="gradients-container">
-        <div class="g1"></div>
-        <div class="g2"></div>
-        <div class="g3"></div>
-        <div class="g4"></div>
-        <div class="g5"></div>
-        <div class="interactive"></div>
-      </div>
+    <div class="gradients-container">
+      <div class="g1"></div>
+      <div class="g2"></div>
+      <div class="g3"></div>
+      <div class="g4"></div>
+      <div class="g5"></div>
+      <div class="interactive"></div>
     </div>
     <div class="text-container">Section 8</div>
   </section>
