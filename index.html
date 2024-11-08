@@ -145,6 +145,10 @@
       opacity: 0.7;
     }
 
+    .hidden-shapes {
+      display: none;
+    }
+
     @keyframes moveInCircle {
       0% { transform: rotate(0deg); }
       50% { transform: rotate(180deg); }
@@ -181,6 +185,7 @@
     svg {
   display: none;
 }
+    
 
   </style>
 
@@ -198,7 +203,7 @@
 <body>
 
   <div class="scroll-container">
-    <div class="section">
+    <div class="section" id="section1">
       <div class="floating-shapes-container">
         <div class="floating-shapes">
           <div class="shape g1"></div>
@@ -214,7 +219,7 @@
         <span class="arrow">↓</span>
       </div>
     </div>
-     <div class="section">
+     <div class="section" id="section2">
       <div class="floating-shapes-container">
         <div class="floating-shapes">
           <div class="shape g1"></div>
@@ -230,7 +235,7 @@
         <span class="arrow">↓</span>
       </div>
     </div>
-     <div class="section">
+     <div class="section" id="section3">
       <div class="floating-shapes-container">
         <div class="floating-shapes">
           <div class="shape g1"></div>
@@ -246,7 +251,7 @@
         <span class="arrow">↓</span>
       </div>
     </div>
-     <div class="section">
+     <div class="section" id="section4">
       <div class="floating-shapes-container">
         <div class="floating-shapes">
           <div class="shape g1"></div>
@@ -262,7 +267,7 @@
         <span class="arrow">↓</span>
       </div>
     </div>
-     <div class="section">
+     <div class="section" id="section5">
       <div class="floating-shapes-container">
         <div class="floating-shapes">
           <div class="shape g1"></div>
@@ -281,37 +286,47 @@
   </div>
 
   <script>
-    const sections = document.querySelectorAll('.section');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        const scrollDown = entry.target.querySelector('.scroll-down');
-        const title = entry.target.querySelector('h1');
-        const floatingShapes = entry.target.querySelector('.floating-shapes');
-        
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+  const sections = document.querySelectorAll('.section');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const scrollDown = entry.target.querySelector('.scroll-down');
+      const title = entry.target.querySelector('h1');
+      const floatingShapes = entry.target.querySelector('.floating-shapes-container');
+
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+
+        // Fade in the scroll indicator after a delay
+        if (scrollDown) {
           setTimeout(() => {
             scrollDown.style.opacity = 1;
           }, 5000);
-          
-          if (floatingShapes) {
-            floatingShapes.style.opacity = 1;
-          }
-        } else {
-          scrollDown.style.opacity = 0;
-          entry.target.classList.remove('visible');
-          
-          if (floatingShapes) {
-            floatingShapes.style.opacity = 0;
-          }
         }
-      });
-    }, { threshold: 0.5 });
 
-    sections.forEach(section => {
-      observer.observe(section);
+        // Make floating shapes visible
+        if (floatingShapes) {
+          floatingShapes.classList.remove('hidden-shapes');
+        }
+      } else {
+        entry.target.classList.remove('visible');
+
+        // Hide the scroll indicator immediately when out of view
+        if (scrollDown) {
+          scrollDown.style.opacity = 0;
+        }
+
+        // Make floating shapes hidden when not in view
+        if (floatingShapes) {
+          floatingShapes.classList.add('hidden-shapes');
+        }
+      }
     });
-  </script>
+  }, { threshold: 0.5 });
+
+  sections.forEach(section => {
+    observer.observe(section);
+  });
+</script>
 
 </body>
 </html>
