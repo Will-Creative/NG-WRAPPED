@@ -25,8 +25,8 @@
       
       margin: 0;
       padding: 0;
-      height: 100vh;
       width: 100vw;
+      height: 100vh;
       overflow: hidden;
       font-family: Arial, sans-serif;
       background: linear-gradient(40deg, var(--color-bg1), var(--color-bg2));
@@ -80,7 +80,7 @@
     }
 
     .floating-shapes-container {
-      position: absolute;
+      position: relative;
       top: 0;
       left: 0;
       width: 100%;
@@ -105,6 +105,7 @@
       background: radial-gradient(circle at center, rgba(var(--color1), 0.8) 0, rgba(var(--color1), 0) 50%) no-repeat;
       animation: moveVertical 30s ease infinite, fadeInOut 10s ease-in-out infinite;
       animation-delay: 0s;
+      z-index: 2
     }
 
     .floating-shapes .shape.g2 {
