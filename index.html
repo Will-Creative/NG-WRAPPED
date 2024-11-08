@@ -13,6 +13,22 @@
       font-family: 'Dongle', sans-serif;
       margin: 0;
       padding: 0;
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+    }
+
+    section {
+      height: 100vh;
+      scroll-snap-align: start;
+      position: relative;
     }
 
     .text-container {
@@ -46,22 +62,10 @@
     }
 
     /* Keyframes for Animation */
-    @keyframes moveInCircle {
-      0% { transform: rotate(0deg); }
-      50% { transform: rotate(180deg); }
-      100% { transform: rotate(360deg); }
-    }
-
     @keyframes moveVertical {
       0% { transform: translateY(-50%); }
       50% { transform: translateY(50%); }
       100% { transform: translateY(-50%); }
-    }
-
-    @keyframes moveHorizontal {
-      0% { transform: translateX(-50%) translateY(-10%); }
-      50% { transform: translateX(50%) translateY(10%); }
-      100% { transform: translateX(-50%) translateY(-10%); }
     }
 
     /* Gradient Background */
@@ -108,17 +112,151 @@
   </style>
 </head>
 <body>
-  <div class="gradient-bg">
-    <div class="gradients-container">
-      <div class="g1"></div>
-      <div class="g2"></div>
-      <div class="g3"></div>
-      <div class="g4"></div>
-      <div class="g5"></div>
-      <div class="interactive"></div>
-    </div>
-  </div>
 
+  <!-- Scrollable Sections -->
+  <section id="section1">
+    <div class="gradient-bg">
+      <div class="gradients-container">
+        <div class="g1"></div>
+        <div class="g2"></div>
+        <div class="g3"></div>
+        <div class="g4"></div>
+        <div class="g5"></div>
+        <div class="interactive"></div>
+      </div>
+    </div>
+    <div class="text-container">Section 1</div>
+  </section>
+
+  <section id="section2">
+    <div class="gradient-bg">
+      <div class="gradients-container">
+        <div class="g1"></div>
+        <div class="g2"></div>
+        <div class="g3"></div>
+        <div class="g4"></div>
+        <div class="g5"></div>
+        <div class="interactive"></div>
+      </div>
+    </div>
+    <div class="text-container">Section 2</div>
+  </section>
+
+  <section id="section3">
+    <div class="gradient-bg">
+      <div class="gradients-container">
+        <div class="g1"></div>
+        <div class="g2"></div>
+        <div class="g3"></div>
+        <div class="g4"></div>
+        <div class="g5"></div>
+        <div class="interactive"></div>
+      </div>
+    </div>
+    <div class="text-container">Section 3</div>
+  </section>
+
+  <section id="section4">
+    <div class="gradient-bg">
+      <div class="gradients-container">
+        <div class="g1"></div>
+        <div class="g2"></div>
+        <div class="g3"></div>
+        <div class="g4"></div>
+        <div class="g5"></div>
+        <div class="interactive"></div>
+      </div>
+    </div>
+    <div class="text-container">Section 4</div>
+  </section>
+
+  <section id="section5">
+    <div class="gradient-bg">
+      <div class="gradients-container">
+        <div class="g1"></div>
+        <div class="g2"></div>
+        <div class="g3"></div>
+        <div class="g4"></div>
+        <div class="g5"></div>
+        <div class="interactive"></div>
+      </div>
+    </div>
+    <div class="text-container">Section 5</div>
+  </section>
+
+  <section id="section6">
+    <div class="gradient-bg">
+      <div class="gradients-container">
+        <div class="g1"></div>
+        <div class="g2"></div>
+        <div class="g3"></div>
+        <div class="g4"></div>
+        <div class="g5"></div>
+        <div class="interactive"></div>
+      </div>
+    </div>
+    <div class="text-container">Section 6</div>
+  </section>
+
+  <section id="section7">
+    <div class="gradient-bg">
+      <div class="gradients-container">
+        <div class="g1"></div>
+        <div class="g2"></div>
+        <div class="g3"></div>
+        <div class="g4"></div>
+        <div class="g5"></div>
+        <div class="interactive"></div>
+      </div>
+    </div>
+    <div class="text-container">Section 7</div>
+  </section>
+
+  <section id="section8">
+    <div class="gradient-bg">
+      <div class="gradients-container">
+        <div class="g1"></div>
+        <div class="g2"></div>
+        <div class="g3"></div>
+        <div class="g4"></div>
+        <div class="g5"></div>
+        <div class="interactive"></div>
+      </div>
+    </div>
+    <div class="text-container">Section 8</div>
+  </section>
+
+  <script>
+    // GSAP ScrollTrigger animations
+    gsap.utils.toArray("section").forEach((section, index) => {
+      gsap.fromTo(section.querySelectorAll('.g1, .g2, .g3, .g4, .g5'), {
+        opacity: 1
+      }, {
+        opacity: 0,
+        scrollTrigger: {
+          trigger: section,
+          start: "top top",
+          end: "bottom top",
+          scrub: true
+        }
+      });
+
+      if (index > 0) {
+        gsap.fromTo(section.querySelectorAll('.g1, .g2, .g3, .g4, .g5'), {
+          opacity: 0
+        }, {
+          opacity: 1,
+          backgroundColor: `rgba(${Math.random()*255}, ${Math.random()*255}, ${Math.random()*255}, 0.8)`,
+          scrollTrigger: {
+            trigger: section,
+            start: "top top",
+            end: "bottom top",
+            scrub: true
+          }
+        });
+      }
+    });
+  </script>
 
 </body>
 </html>
