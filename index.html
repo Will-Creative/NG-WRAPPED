@@ -81,6 +81,87 @@
       animation: bounceArrow 1s infinite;
     }
 
+    .floating-shapes {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      pointer-events: none;
+    }
+
+    .floating-shapes .shape {
+      position: absolute;
+      width: var(--circle-size);
+      height: var(--circle-size);
+      border-radius: 50%;
+      opacity: 0;
+      animation: fadeInOut 10s ease infinite;
+    }
+
+    .floating-shapes .shape.g1 {
+      background: rgba(18, 113, 255, 0.8);
+      animation: moveVertical 30s ease infinite, fadeInOut 10s ease-in-out infinite;
+    }
+
+    .floating-shapes .shape.g2 {
+      background: rgba(221, 74, 255, 0.8);
+      animation: moveInCircle 20s reverse infinite, fadeInOut 10s ease-in-out infinite;
+    }
+
+    .floating-shapes .shape.g3 {
+      background: rgba(100, 220, 255, 0.8);
+      animation: moveInCircle 40s linear infinite, fadeInOut 10s ease-in-out infinite;
+    }
+
+    .floating-shapes .shape.g4 {
+      background: rgba(200, 50, 50, 0.8);
+      animation: moveHorizontal 40s ease infinite, fadeInOut 10s ease-in-out infinite;
+    }
+
+    .floating-shapes .shape.g5 {
+      background: rgba(180, 180, 50, 0.8);
+      width: calc(var(--circle-size) * 2);
+      height: calc(var(--circle-size) * 2);
+      animation: moveInCircle 20s ease infinite, fadeInOut 10s ease-in-out infinite;
+    }
+
+    .floating-shapes .interactive {
+      background: rgba(140, 100, 255, 0.8);
+      width: 100%;
+      height: 100%;
+      top: -50%;
+      left: -50%;
+      opacity: 0.7;
+    }
+
+    /* Keyframes for animations */
+    @keyframes moveInCircle {
+      0% { transform: rotate(0deg); }
+      50% { transform: rotate(180deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes moveVertical {
+      0% { transform: translateY(-50%); }
+      50% { transform: translateY(50%); }
+      100% { transform: translateY(-50%); }
+    }
+
+    @keyframes moveHorizontal {
+      0% { transform: translateX(-50%) translateY(-10%); }
+      50% { transform: translateX(50%) translateY(10%); }
+      100% { transform: translateX(-50%) translateY(-10%); }
+    }
+
+    @keyframes fadeInOut {
+      0%, 100% { opacity: 0; }
+      50% { opacity: 1; }
+    }
+
     @keyframes blink {
       0%, 100% { opacity: 0; }
       50% { opacity: 1; }
@@ -97,6 +178,13 @@
 
   <div class="scroll-container">
     <div class="section">
+      <div class="floating-shapes">
+        <div class="shape g1"></div>
+        <div class="shape g2"></div>
+        <div class="shape g3"></div>
+        <div class="shape g4"></div>
+        <div class="shape g5"></div>
+      </div>
       <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold">Section 1 Title</h1>
       <div class="scroll-down">
         Scroll down
@@ -104,6 +192,13 @@
       </div>
     </div>
     <div class="section">
+      <div class="floating-shapes">
+        <div class="shape g1"></div>
+        <div class="shape g2"></div>
+        <div class="shape g3"></div>
+        <div class="shape g4"></div>
+        <div class="shape g5"></div>
+      </div>
       <h1>Section 2 Title</h1>
       <div class="scroll-down">
         Scroll down
@@ -111,6 +206,13 @@
       </div>
     </div>
     <div class="section">
+      <div class="floating-shapes">
+        <div class="shape g1"></div>
+        <div class="shape g2"></div>
+        <div class="shape g3"></div>
+        <div class="shape g4"></div>
+        <div class="shape g5"></div>
+      </div>
       <h1>Section 3 Title</h1>
       <div class="scroll-down">
         Scroll down
@@ -118,6 +220,13 @@
       </div>
     </div>
     <div class="section">
+      <div class="floating-shapes">
+        <div class="shape g1"></div>
+        <div class="shape g2"></div>
+        <div class="shape g3"></div>
+        <div class="shape g4"></div>
+        <div class="shape g5"></div>
+      </div>
       <h1>Section 4 Title</h1>
       <div class="scroll-down">
         Scroll down
@@ -125,6 +234,13 @@
       </div>
     </div>
     <div class="section">
+      <div class="floating-shapes">
+        <div class="shape g1"></div>
+        <div class="shape g2"></div>
+        <div class="shape g3"></div>
+        <div class="shape g4"></div>
+        <div class="shape g5"></div>
+      </div>
       <h1>Section 5 Title</h1>
       <div class="scroll-down">
         Scroll down
@@ -132,6 +248,13 @@
       </div>
     </div>
     <div class="section">
+      <div class="floating-shapes">
+        <div class="shape g1"></div>
+        <div class="shape g2"></div>
+        <div class="shape g3"></div>
+        <div class="shape g4"></div>
+        <div class="shape g5"></div>
+      </div>
       <h1>Section 6 Title</h1>
       <div class="scroll-down">
         Scroll down
@@ -139,6 +262,13 @@
       </div>
     </div>
     <div class="section">
+      <div class="floating-shapes">
+        <div class="shape g1"></div>
+        <div class="shape g2"></div>
+        <div class="shape g3"></div>
+        <div class="shape g4"></div>
+        <div class="shape g5"></div>
+      </div>
       <h1>Section 7 Title</h1>
       <div class="scroll-down">
         Scroll down
@@ -146,46 +276,58 @@
       </div>
     </div>
     <div class="section">
-      <h1>Section 8 Title</h1>
-      <div class="scroll-down">
-        Scroll down
-        <span class="arrow">↓</span>
+      <div class="floating-shapes">
+        <div class="shape g1"></div>
+        <div class="shape g2"></div>
+        <div class="shape g3"></div>
+        <div class="shape g4"></div>
+        <div class="shape g5"></div>
       </div>
+      <h1>Section 8 Title</h1>
     </div>
   </div>
 
   <script>
-    // Intersection Observer to detect when sections are in view
     const sections = document.querySelectorAll('.section');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    const scrollDown = entry.target.querySelector('.scroll-down');
+    const title = entry.target.querySelector('h1');
+    const floatingShapes = entry.target.querySelector('.floating-shapes');
     
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        const scrollDown = entry.target.querySelector('.scroll-down');
-        const title = entry.target.querySelector('h1');
-        
-        if (entry.isIntersecting) {
-          // Add visible class to section for smooth fade-in effect on title and scroll-down
-          entry.target.classList.add('visible');
-          
-          // Delay the appearance of the "scroll down" text by 2 seconds
-          setTimeout(() => {
-            scrollDown.style.opacity = 1;
-          }, 5000); // 2-second delay
+    if (entry.isIntersecting) {
+      // Add visible class to section for smooth fade-in effect on title and floating shapes
+      entry.target.classList.add('visible');
+      
+      // Delay the appearance of the "scroll down" text by 2 seconds
+      setTimeout(() => {
+        scrollDown.style.opacity = 1;
+      }, 5000); // 2-second delay
+      
+      // Fade in the floating shapes
+      if (floatingShapes) {
+        floatingShapes.style.opacity = 1;
+      }
+    } else {
+      // Make the "Scroll down" text fade out when not in view
+      scrollDown.style.opacity = 0;
+      entry.target.classList.remove('visible');
+      
+      // Fade out the floating shapes when the section is not in view
+      if (floatingShapes) {
+        floatingShapes.style.opacity = 0;
+      }
+    }
+  });
+}, {
+  threshold: 0.5 // Trigger when 50% of the section is visible
+});
 
-        } else {
-          // Make the "Scroll down" text fade out with a specific fade-out speed when not in view
-          scrollDown.style.opacity = 0;
-          entry.target.classList.remove('visible');
-        }
-      });
-    }, {
-      threshold: 0.5 // Trigger when 50% of the section is visible
-    });
+// Attach observer to each section
+sections.forEach(section => {
+  observer.observe(section);
+});
 
-    // Attach observer to each section
-    sections.forEach(section => {
-      observer.observe(section);
-    });
   </script>
 </body>
 </html>
