@@ -9,6 +9,8 @@
     :root {
       --fade-in-speed: 1s; /* Speed for fade-in */
       --fade-out-speed: 0.5s; /* Speed for fade-out */
+      --color-bg1: #1abc9c; /* Initial color for gradient */
+      --color-bg2: #3498db; /* Initial color for gradient */
     }
 
     body {
@@ -17,10 +19,10 @@
       height: 100vh;
       overflow: hidden;
       font-family: Arial, sans-serif;
-      /* Gradient background for the whole page */
-      background: linear-gradient(to bottom, #1abc9c, #3498db);
-      background-size: 400% 400%;
-      animation: gradientBG 10s ease infinite;
+      /* Single gradient applied to the whole page */
+      background: linear-gradient(40deg, var(--color-bg1), var(--color-bg2));
+      background-size: 200% 200%;
+      animation: gradientShift 30s ease infinite; /* Animation for the gradient */
     }
 
     .scroll-container {
@@ -40,7 +42,6 @@
       font-size: 2rem;
       color: #fff;
       position: relative;
-      transition: background 1s ease-in-out;
       opacity: 1; /* Keep section visible */
     }
 
@@ -81,7 +82,7 @@
       50% { transform: translateY(10px); }
     }
 
-    /* Color variations for each section */
+    /* Keep sections with static colors, no gradient transition needed */
     .section:nth-child(1) { background-color: #1abc9c; }
     .section:nth-child(2) { background-color: #3498db; }
     .section:nth-child(3) { background-color: #9b59b6; }
@@ -92,7 +93,7 @@
     .section:nth-child(8) { background-color: #8e44ad; }
 
     /* Animation for the gradient background */
-    @keyframes gradientBG {
+    @keyframes gradientShift {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
@@ -103,56 +104,56 @@
 <body>
 
   <div class="scroll-container">
-    <div class="section" data-bg1="#1abc9c" data-bg2="#3498db">
+    <div class="section">
       <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold">Section 1 Title</h1>
       <div class="scroll-down">
         Scroll down
         <span class="arrow">↓</span>
       </div>
     </div>
-    <div class="section" data-bg1="#3498db" data-bg2="#9b59b6">
+    <div class="section">
       <h1>Section 2 Title</h1>
       <div class="scroll-down">
         Scroll down
         <span class="arrow">↓</span>
       </div>
     </div>
-    <div class="section" data-bg1="#9b59b6" data-bg2="#e74c3c">
+    <div class="section">
       <h1>Section 3 Title</h1>
       <div class="scroll-down">
         Scroll down
         <span class="arrow">↓</span>
       </div>
     </div>
-    <div class="section" data-bg1="#e74c3c" data-bg2="#f39c12">
+    <div class="section">
       <h1>Section 4 Title</h1>
       <div class="scroll-down">
         Scroll down
         <span class="arrow">↓</span>
       </div>
     </div>
-    <div class="section" data-bg1="#f39c12" data-bg2="#2ecc71">
+    <div class="section">
       <h1>Section 5 Title</h1>
       <div class="scroll-down">
         Scroll down
         <span class="arrow">↓</span>
       </div>
     </div>
-    <div class="section" data-bg1="#2ecc71" data-bg2="#34495e">
+    <div class="section">
       <h1>Section 6 Title</h1>
       <div class="scroll-down">
         Scroll down
         <span class="arrow">↓</span>
       </div>
     </div>
-    <div class="section" data-bg1="#34495e" data-bg2="#8e44ad">
+    <div class="section">
       <h1>Section 7 Title</h1>
       <div class="scroll-down">
         Scroll down
         <span class="arrow">↓</span>
       </div>
     </div>
-    <div class="section" data-bg1="#8e44ad" data-bg2="#1abc9c">
+    <div class="section">
       <h1>Section 8 Title</h1>
       <div class="scroll-down">
         Scroll down
@@ -179,10 +180,6 @@
             scrollDown.style.opacity = 1;
           }, 5000); // 2-second delay
 
-          // Update the background gradient based on the section data attributes
-          const bg1 = entry.target.getAttribute('data-bg1');
-          const bg2 = entry.target.getAttribute('data-bg2');
-          entry.target.style.background = `linear-gradient(to bottom, ${bg1}, ${bg2})`;
         } else {
           // Make the "Scroll down" text fade out with a specific fade-out speed when not in view
           scrollDown.style.opacity = 0;
