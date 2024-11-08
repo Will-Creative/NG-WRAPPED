@@ -93,37 +93,88 @@
     }
 
     .floating-shapes {
-      position: absolute;
-      width: var(--circle-size);
-      height: var(--circle-size);
       border-radius: 50%;
       opacity: 0;
-      animation: fadeInOut 10s ease infinite;
     }
 
     .floating-shapes .shape.g1 {
+      position: absolute;
       background: radial-gradient(circle at center, rgba(var(--color1), 0.8) 0, rgba(var(--color1), 0) 50%) no-repeat;
-      animation: moveVertical 30s ease infinite, fadeInOut 10s ease-in-out infinite;
+      mix-blend-mode: var(--blending);
+      
+      width: var(--circle-size);
+      height: var(--circle-size);
+      top: calc(50% - var(--circle-size) / 2);
+      left: calc(50% - var(--circle-size) / 2);
+
+      transform-origin: center center;
+      animation: moveVertical 30s ease infinite;
+
+      opacity: 1;
     }
 
     .floating-shapes .shape.g2 {
+      position: absolute;
       background: radial-gradient(circle at center, rgba(var(--color2), 0.8) 0, rgba(var(--color2), 0) 50%) no-repeat;
-      animation: moveInCircle 20s reverse infinite, fadeInOut 10s ease-in-out infinite;
+      mix-blend-mode: var(--blending);
+      
+      width: var(--circle-size);
+      height: var(--circle-size);
+      top: calc(50% - var(--circle-size) / 2);
+      left: calc(50% - var(--circle-size) / 2);
+
+      transform-origin: calc(50% - 400px);
+      animation: moveInCircle 20s reverse infinite;
+      
+      opacity: 1;
     }
 
     .floating-shapes .shape.g3 {
+      position: absolute;
       background: radial-gradient(circle at center, rgba(var(--color3), 0.8) 0, rgba(var(--color3), 0) 50%) no-repeat;
-      animation: moveInCircle 40s linear infinite, fadeInOut 10s ease-in-out infinite;
+      mix-blend-mode: var(--blending);
+      
+      width: var(--circle-size);
+      height: var(--circle-size);
+      top: calc(50% - var(--circle-size) / 2);
+      left: calc(50% - var(--circle-size) / 2);
+
+      transform-origin: calc(50% + 400px);
+      animation: moveInCircle 40s linear infinite;
+      
+      opacity: 1;
     }
 
     .floating-shapes .shape.g4 {
+      position: absolute;
       background: radial-gradient(circle at center, rgba(var(--color4), 0.8) 0, rgba(var(--color4), 0) 50%) no-repeat;
-      animation: moveHorizontal 40s ease infinite, fadeInOut 10s ease-in-out infinite;
+      mix-blend-mode: var(--blending);
+      
+      width: var(--circle-size);
+      height: var(--circle-size);
+      top: calc(50% - var(--circle-size) / 2);
+      left: calc(50% - var(--circle-size) / 2);
+
+      transform-origin: calc(50% - 200px);
+      animation: moveHorizontal 40s ease infinite;
+
+      opacity: 0.7;
     }
 
     .floating-shapes .shape.g5 {
+      position: absolute;
       background: radial-gradient(circle at center, rgba(var(--color5), 0.8) 0, rgba(var(--color5), 0) 50%) no-repeat;
-      animation: moveInCircle 20s ease infinite, fadeInOut 10s ease-in-out infinite;
+      mix-blend-mode: var(--blending);
+      
+      width: var(--circle-size);
+      height: var(--circle-size);
+      top: calc(50% - var(--circle-size) / 2);
+      left: calc(50% - var(--circle-size) / 2);
+
+      transform-origin: calc(50% - 800px) calc(50% + 200px);
+      animation: moveInCircle 20s ease infinite;
+
+      opacity: 1;
     }
 
     .floating-shapes .interactive {
