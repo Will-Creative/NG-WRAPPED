@@ -3,18 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NEXT GEN IMPACT</title>
+  <title>Animated Background with Scroll Snap</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
-    :root {
-      --fade-in-speed: 1s; /* Speed for fade-in */
-      --fade-out-speed: 0.5s; /* Speed for fade-out */
-    }
-
     body {
+      background-color: #f9fafb; /* Soft white background */
       margin: 0;
       padding: 0;
-      height: 100vh;
       overflow: hidden;
       font-family: Arial, sans-serif;
     }
@@ -25,6 +20,7 @@
       scroll-snap-type: y mandatory;
       -webkit-overflow-scrolling: touch;
       scroll-behavior: smooth;
+      position: relative;
     }
 
     .section {
@@ -37,159 +33,126 @@
       color: #fff;
       position: relative;
       transition: background 1s ease-in-out;
-      opacity: 1; /* Keep section visible */
     }
 
-    .section h1 {
-      opacity: 0;
-      transition: opacity var(--fade-in-speed) ease-in-out;
-    }
-
-    .section.visible h1 {
-      opacity: 1; /* Fade in the title when section is in view */
-    }
-
-    .scroll-down {
+    .blur-overlay {
       position: absolute;
-      bottom: 20px;
-      font-size: 1.5rem;
-      color: #fff;
-      text-align: center;
-      opacity: 0;
-      animation: blink 1.5s infinite;
-      z-index: 20;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      backdrop-filter: blur(50px);
+      z-index: 1;
+      pointer-events: none;
     }
 
-    .scroll-down .arrow {
-      display: block;
-      font-size: 2rem;
-      margin-top: 5px;
-      animation: bounceArrow 1s infinite;
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.6;
+      animation: moveShapes 20s infinite alternate;
     }
 
-    @keyframes blink {
-      0%, 100% { opacity: 0; }
-      50% { opacity: 1; }
+    .shape1 {
+      animation-duration: 25s;
     }
 
-    @keyframes bounceArrow {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(10px); }
+    @keyframes moveShapes {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+      50% {
+        transform: translate(30px, 50px) scale(1.2);
+      }
+      100% {
+        transform: translate(-50px, -30px) scale(1);
+      }
     }
 
-    .section:nth-child(1) { background-color: #1abc9c; }
-    .section:nth-child(2) { background-color: #3498db; }
-    .section:nth-child(3) { background-color: #9b59b6; }
-    .section:nth-child(4) { background-color: #e74c3c; }
-    .section:nth-child(5) { background-color: #f39c12; }
-    .section:nth-child(6) { background-color: #2ecc71; }
-    .section:nth-child(7) { background-color: #34495e; }
-    .section:nth-child(8) { background-color: #8e44ad; }
+    .section:nth-child(1) .shape1 {
+      background: rgba(255, 153, 102, 0.5);
+    }
 
-   
+    .section:nth-child(2) .shape1 {
+      background: rgba(102, 204, 255, 0.5);
+    }
+
+    .section:nth-child(3) .shape1 {
+      background: rgba(153, 255, 153, 0.5);
+    }
+
+    .section:nth-child(4) .shape1 {
+      background: rgba(255, 102, 178, 0.5);
+    }
+
+    .section:nth-child(5) .shape1 {
+      background: rgba(255, 229, 153, 0.5);
+    }
+
+    .section:nth-child(6) .shape1 {
+      background: rgba(102, 178, 255, 0.5);
+    }
+
+    .section:nth-child(7) .shape1 {
+      background: rgba(178, 102, 255, 0.5);
+    }
+
+    .section:nth-child(8) .shape1 {
+      background: rgba(255, 153, 204, 0.5);
+    }
+
   </style>
- 
 </head>
 <body>
-
-
   <div class="scroll-container">
-    <div class="section" data-bg1="#1abc9c" data-bg2="#3498db">
-      <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold">Section 1 Title</h1>
-      <div class="scroll-down">
-        Scroll down
-        <span class="arrow">↓</span>
+    <div class="section bg-green-400">
+      <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold">Section 1</h1>
+      <div class="blur-overlay">
+        <div class="shape shape1 w-80 h-80 top-20 left-20"></div>
       </div>
     </div>
-    <div class="section" data-bg1="#3498db" data-bg2="#9b59b6">
-      <h1>Section 2 Title</h1>
-      <div class="scroll-down">
-        Scroll down
-        <span class="arrow">↓</span>
+    <div class="section bg-blue-400">
+      <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold">Section 2</h1>
+      <div class="blur-overlay">
+        <div class="shape shape1 w-80 h-80 top-20 left-20"></div>
       </div>
     </div>
-    <div class="section" data-bg1="#9b59b6" data-bg2="#e74c3c">
-      <h1>Section 3 Title</h1>
-      <div class="scroll-down">
-        Scroll down
-        <span class="arrow">↓</span>
+    <div class="section bg-purple-400">
+      <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold">Section 3</h1>
+      <div class="blur-overlay">
+        <div class="shape shape1 w-80 h-80 top-20 left-20"></div>
       </div>
     </div>
-    <div class="section" data-bg1="#e74c3c" data-bg2="#f39c12">
-      <h1>Section 4 Title</h1>
-      <div class="scroll-down">
-        Scroll down
-        <span class="arrow">↓</span>
+    <div class="section bg-red-400">
+      <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold">Section 4</h1>
+      <div class="blur-overlay">
+        <div class="shape shape1 w-80 h-80 top-20 left-20"></div>
       </div>
     </div>
-    <div class="section" data-bg1="#f39c12" data-bg2="#2ecc71">
-      <h1>Section 5 Title</h1>
-      <div class="scroll-down">
-        Scroll down
-        <span class="arrow">↓</span>
+    <div class="section bg-yellow-400">
+      <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold">Section 5</h1>
+      <div class="blur-overlay">
+        <div class="shape shape1 w-80 h-80 top-20 left-20"></div>
       </div>
     </div>
-    <div class="section" data-bg1="#2ecc71" data-bg2="#34495e">
-      <h1>Section 6 Title</h1>
-      <div class="scroll-down">
-        Scroll down
-        <span class="arrow">↓</span>
+    <div class="section bg-green-400">
+      <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold">Section 6</h1>
+      <div class="blur-overlay">
+        <div class="shape shape1 w-80 h-80 top-20 left-20"></div>
       </div>
     </div>
-    <div class="section" data-bg1="#34495e" data-bg2="#8e44ad">
-      <h1>Section 7 Title</h1>
-      <div class="scroll-down">
-        Scroll down
-        <span class="arrow">↓</span>
+    <div class="section bg-blue-400">
+      <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold">Section 7</h1>
+      <div class="blur-overlay">
+        <div class="shape shape1 w-80 h-80 top-20 left-20"></div>
       </div>
     </div>
-    <div class="section" data-bg1="#8e44ad" data-bg2="#1abc9c">
-      <h1>Section 8 Title</h1>
-      <div class="scroll-down">
-        Scroll down
-        <span class="arrow">↓</span>
+    <div class="section bg-purple-400">
+      <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold">Section 8</h1>
+      <div class="blur-overlay">
+        <div class="shape shape1 w-80 h-80 top-20 left-20"></div>
       </div>
     </div>
   </div>
-
-  <script>
-    // Intersection Observer to detect when sections are in view
-    const sections = document.querySelectorAll('.section');
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        const scrollDown = entry.target.querySelector('.scroll-down');
-        const title = entry.target.querySelector('h1');
-        
-        if (entry.isIntersecting) {
-          // Add visible class to section for smooth fade-in effect on title and scroll-down
-          entry.target.classList.add('visible');
-          
-          // Delay the appearance of the "scroll down" text by 2 seconds
-          setTimeout(() => {
-            scrollDown.style.opacity = 1;
-          }, 5000); // 2-second delay
-
-          // Update the background gradient based on the section data attributes
-          const bg1 = entry.target.getAttribute('data-bg1');
-          const bg2 = entry.target.getAttribute('data-bg2');
-          entry.target.style.background = `linear-gradient(to bottom, ${bg1}, ${bg2})`;
-        } else {
-          // Make the "Scroll down" text fade out with a specific fade-out speed when not in view
-          scrollDown.style.opacity = 0;
-          entry.target.classList.remove('visible');
-        }
-      });
-    }, {
-      threshold: 0.5 // Trigger when 50% of the section is visible
-    });
-
-    // Attach observer to each section
-    sections.forEach(section => {
-      observer.observe(section);
-    });
-
-  
-  </script>
 </body>
 </html>
