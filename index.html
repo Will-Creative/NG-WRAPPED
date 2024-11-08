@@ -58,16 +58,20 @@
     .shape1 {
       width: 150px;
       height: 150px;
+      z-index: 2;
       background: rgba(255, 105, 180, 0.6); /* Soft pink */
-      animation: moveShape1 10s infinite alternate;
+      animation: moveShape1 10s infinite ease-in-out;
+      mix-blend-mode: screen;
     }
 
     /* Shape 2 */
     .shape2 {
       width: 150px;
       height: 150px;
+      z-index: 2;
       background: rgba(135, 206, 235, 0.6); /* Light blue */
-      animation: moveShape2 10s infinite alternate;
+      animation: moveShape2 10s infinite ease-in-out;
+      mix-blend-mode: screen;
     }
 
     /* Shape 1 Animation */
