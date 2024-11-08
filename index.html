@@ -11,11 +11,11 @@
       --fade-out-speed: 0.5s;
       --color-bg1: rgb(108, 0, 162);
       --color-bg2: rgb(0, 17, 82);
-      --color1: 18, 113, 255, 0.8;
-      --color2: 221, 74, 255, 0.8;
-      --color3: 100, 220, 255, 0.8;
-      --color4: 200, 50, 50, 0.8;
-      --color5: 180, 180, 50, 0.8;
+      --color1: 18, 113, 255;
+      --color2: 221, 74, 255;
+      --color3: 100, 220, 255;
+      --color4: 200, 50, 50;
+      --color5: 180, 180, 50;
       --color-interactive: 140, 100, 255;
       --circle-size: 80%;
       --blending: hard-light;
@@ -101,27 +101,27 @@
     }
 
     .floating-shapes .shape.g1 {
-      background: var(--color1);
+      background: radial-gradient(circle at center, rgba(var(--color1), 0.8) 0, rgba(var(--color1), 0) 50%) no-repeat;
       animation: moveVertical 30s ease infinite, fadeInOut 10s ease-in-out infinite;
     }
 
     .floating-shapes .shape.g2 {
-      background: var(--color2);
+      background: radial-gradient(circle at center, rgba(var(--color2), 0.8) 0, rgba(var(--color2), 0) 50%) no-repeat;
       animation: moveInCircle 20s reverse infinite, fadeInOut 10s ease-in-out infinite;
     }
 
     .floating-shapes .shape.g3 {
-      background: var(--color3);
+      background: radial-gradient(circle at center, rgba(var(--color3), 0.8) 0, rgba(var(--color3), 0) 50%) no-repeat;
       animation: moveInCircle 40s linear infinite, fadeInOut 10s ease-in-out infinite;
     }
 
     .floating-shapes .shape.g4 {
-      background: var(--color4);
+      background: radial-gradient(circle at center, rgba(var(--color4), 0.8) 0, rgba(var(--color4), 0) 50%) no-repeat;
       animation: moveHorizontal 40s ease infinite, fadeInOut 10s ease-in-out infinite;
     }
 
     .floating-shapes .shape.g5 {
-      background: var(--color5);
+      background: radial-gradient(circle at center, rgba(var(--color5), 0.8) 0, rgba(var(--color5), 0) 50%) no-repeat;
       width: calc(var(--circle-size) * 2);
       height: calc(var(--circle-size) * 2);
       animation: moveInCircle 20s ease infinite, fadeInOut 10s ease-in-out infinite;
