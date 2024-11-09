@@ -242,7 +242,7 @@
     <!-- Noise Filter -->
     <filter id="noiseFilter">
       <!-- Animated noise effect -->
-      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" seed="1" result="noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.2" numOctaves="5" seed="1" result="noise">
         <animate attributeName="seed" from="1" to="1000" dur="0.5s" repeatCount="indefinite" />
       </feTurbulence>
       <feColorMatrix in="noise" type="saturate" values="0" result="desaturatedNoise" />
@@ -253,7 +253,7 @@
       </feComponentTransfer>
       
       <!-- Use feBlend to overlay the noise over the original content -->
-      <feBlend in="SourceGraphic" in2="opacityNoise" mode="soft-light" result="combinedNoise" />
+      <feBlend in="SourceGraphic" in2="opacityNoise" mode="screen" result="combinedNoise" />
     </filter>
 
     <!-- Goo Filter (Blur) -->
