@@ -43,8 +43,6 @@
 
 .floating-shapes {
   position: relative;
-  width: 100%; /* Full container width */
-  height: 100%; /* Full container height */
   border-radius: 50%;
   opacity: 1;
   z-index: 8
