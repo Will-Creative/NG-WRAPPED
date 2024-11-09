@@ -4,24 +4,9 @@
   --color3: 100, 220, 255;
   --color4: 200, 50, 50;
   --color5: 180, 180, 50;
-  --circle-size: 50vw;
+  --circle-size: 60vw;
   --blending: hard-light;
 }
-
-@media (max-width: 768px) {
-  .shape {
-    width: 40vw;  /* Larger shapes on smaller screens */
-    height: 40vw;
-  }
-}
-
-@media (min-width: 769px) {
-  .shape {
-    width: 20vw;  /* Smaller shapes on larger screens */
-    height: 20vw;
-  }
-}
-
 
 
 @keyframes moveInCircle {
@@ -52,7 +37,7 @@
   justify-content: center;
   align-items: center;
   pointer-events: none;
-  overflow: hidden;
+  overflow: visible;
   z-index: 8
   filter: url(#goo) blur(40px);
 }
