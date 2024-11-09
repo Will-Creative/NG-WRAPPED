@@ -13,7 +13,7 @@
 }
 
 .text-container h1 {
-  font-size: 5rem;
+  font-size: 3rem;
   color: #201e1fff;
   transition: opacity var(--fade-in-speed) ease-in-out;
 }
@@ -31,7 +31,7 @@
 }
 
 .scroll-down {
-  position: relative;
+  position: absolute;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
