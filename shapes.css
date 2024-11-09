@@ -4,7 +4,7 @@
   --color3: 100, 220, 255;
   --color4: 200, 50, 50;
   --color5: 180, 180, 50;
-  --circle-size: 60vw;
+  --circle-size: 70vw;
   --blending: hard-light;
 }
 
@@ -48,7 +48,7 @@ svg {
 
 .floating-shapes {
   position: relative;
-  border-radius: 50%;
+  border-radius: 40%;
   opacity: 1;
 }
 
