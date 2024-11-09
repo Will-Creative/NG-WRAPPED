@@ -30,6 +30,7 @@
       overflow: hidden;
       font-family: Arial, sans-serif;
       background: linear-gradient(40deg, var(--color-bg1), var(--color-bg2));
+      filter: url(#noiseFilter)
     }
 
     .scroll-container {
@@ -237,30 +238,33 @@
 
 <svg width="0" height="0">
   <defs>
-    <filter id="goo">
-      <!-- Goo effect (blur) -->
-      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
-      
+    <!-- Noise Filter -->
+    <filter id="noiseFilter">
       <!-- Animated noise effect -->
       <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" seed="1" result="noise">
         <animate attributeName="seed" from="1" to="1000" dur="5s" repeatCount="indefinite" />
       </feTurbulence>
       <feColorMatrix in="noise" type="saturate" values="0" result="desaturatedNoise" />
-
+      
       <!-- Change opacity of the noise -->
       <feComponentTransfer in="desaturatedNoise">
-        <feFuncA type="table" tableValues="1 0.9" result="opacityNoise" />
+        <feFuncA type="table" tableValues="1 0.5" result="opacityNoise" />
       </feComponentTransfer>
       
-      <!-- Apply noise on top of the blur without blending -->
-      <feComposite in="desaturatedNoise" in2="goo" operator="over" result="combined" />
-      
-      <!-- Final result: combine the original graphic with noise and goo effect -->
-      <feBlend in="SourceGraphic" in2="combined" mode="normal" />
+      <!-- Apply noise (opacity) over the whole page -->
+      <feComposite in="opacityNoise" in2="SourceGraphic" operator="over" result="combinedNoise" />
+    </filter>
+
+    <!-- Goo Filter (Blur) -->
+    <filter id="goo">
+      <!-- Goo effect (blur) -->
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
+      <feBlend in="SourceGraphic" in2="goo" />
     </filter>
   </defs>
 </svg>
+
 
 
 </head>
