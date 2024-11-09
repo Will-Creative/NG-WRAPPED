@@ -34,6 +34,7 @@
   justify-content: center;
   align-items: center;
   pointer-events: none;
+  overflow: visable
   filter: url(#goo) blur(40px);
 }
 
