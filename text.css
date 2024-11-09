@@ -1,4 +1,10 @@
-.title-container {
+ <style>
+    :root {
+      --fade-in-speed: 1s;
+      --fade-out-speed: 0.5s;
+    }
+
+.text-container {
   position: absolute;
   top: 20px; /* Adjust as needed */
   left: 50%;
@@ -7,19 +13,19 @@
   text-align: center;
 }
 
-.title-container h1 {
+.text-container h1 {
   font-size: 3rem;
   color: #fff;
   transition: opacity var(--fade-in-speed) ease-in-out;
 }
 
-.title-container h2 {
+.text-container h2 {
   font-size: 1rem;
   color: #fff;
   transition: opacity var(--fade-in-speed) ease-in-out;
 }
 
-.title-container h3 {
+.text-container h3 {
   font-size: 1rem;
   color: #201e1fff;
   transition: opacity var(--fade-in-speed) ease-in-out;
