@@ -60,29 +60,12 @@
 
 <svg width="0" height="0">
   <defs>
-    <!-- Noise Filter -->
-    <filter id="noiseFilter">
-      <!-- Animated noise effect -->
-      <feTurbulence type="fractalNoise" baseFrequency="0.2" numOctaves="5" seed="1" result="noise">
-        <animate attributeName="seed" from="1" to="1000" dur="0.5s" repeatCount="indefinite" />
-      </feTurbulence>
-      <feColorMatrix in="noise" type="saturate" values="0" result="desaturatedNoise" />
-
-<!-- Change opacity of the noise -->
-      <feComponentTransfer in="desaturatedNoise">
-        <feFuncA type="table" tableValues="1 0.1" result="opacityNoise" />
-      </feComponentTransfer>
-      
-      <!-- Use feBlend to overlay the noise over the original content -->
-      <feBlend in="SourceGraphic" in2="opacityNoise" mode="screen" result="combinedNoise" />
-    </filter>
-
     <!-- Goo Filter (Blur) -->
     <filter id="goo">
-      <!-- Goo effect (blur) -->
-      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
-      <feBlend in="SourceGraphic" in2="goo" />
+          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
+          <feBlend in="SourceGraphic" in2="goo" />
+        </filter>
     </filter>
   </defs>
 </svg>
