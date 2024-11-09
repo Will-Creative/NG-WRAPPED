@@ -9,13 +9,6 @@
   --blending: hard-light;
 }
 
-/* Media query for mobile */
-@media (max-width: 768px) {
-  .floating-shapes .shape {
-    width: 20vw;  /* Adjust the size for mobile */
-    height: 20vw; /* Adjust the size for mobile */
-  }
-}
 
 @keyframes moveInCircle {
       0% { transform: rotate(0deg); }
