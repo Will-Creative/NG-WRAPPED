@@ -90,23 +90,8 @@
       align-items: center;
       pointer-events: none;
       z-index: 8
-      filter: url(#goo) blur(40px); /* Apply the filter to the container */
+      filter: url(#goo) blur(40px); url(#noiseFilter); /* Apply the filter to the container */
     }
-
-    .floating-shapes-container::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none; /* Keeps the noise overlay from blocking interactions */
-  background: url("https://www.transparenttextures.com/patterns/bedge-grunge.png"); /* Replace with the path to your noise image */
-  opacity: 0.9; /* Adjust to control noise visibility */
-  mix-blend-mode: overlay; /* Blends the noise with the container */
-  z-index: 9; /* Ensures it appears over the container contents */
-}
-
 
     .floating-shapes {
       border-radius: 50%;
@@ -250,6 +235,18 @@
 
   </style>
 
+  <svg width="0" height="0">
+    <filter id="noiseFilter">
+      <feTurbulence 
+        type="fractalNoise" 
+        baseFrequency="0.8" 
+        numOctaves="3" 
+        stitchTiles="stitch">
+      </feTurbulence>
+      <feColorMatrix type="saturate" values="0"></feColorMatrix>
+    </filter>
+  </svg>
+  
   <svg xmlns="http://www.w3.org/2000/svg">
       <defs>
         <filter id="goo">
