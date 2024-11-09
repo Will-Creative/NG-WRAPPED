@@ -1,1 +1,29 @@
+:root {
+  --color1: 18, 113, 255;
+  --color2: 221, 74, 255;
+  --color3: 100, 220, 255;
+  --color4: 200, 50, 50;
+  --color5: 180, 180, 50;
+  --circle-size: 80%;
+  --blending: hard-light;
+}
+
+.floating-shapes-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  filter: url(#goo) blur(40px);
+}
+
+.floating-shapes {
+  border-radius: 50%;
+  opacity: 1;
+}
+
 
