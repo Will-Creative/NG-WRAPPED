@@ -248,7 +248,7 @@
       <feColorMatrix in="noise" type="saturate" values="0" result="desaturatedNoise" />
     
       <!-- Use feBlend to overlay the noise over the original content -->
-      <feBlend in="SourceGraphic" in2="opacityNoise" mode="overlay" result="combinedNoise" />
+      <feBlend in="SourceGraphic" in2="opacityNoise" mode="soft-light" result="combinedNoise" />
     </filter>
 
     <!-- Goo Filter (Blur) -->
