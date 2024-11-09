@@ -5,8 +5,16 @@
   --color4: 200, 50, 50;
   --color5: 180, 180, 50;
   --color-interactive: 140, 100, 255;
-  --circle-size: 80%;
+  --circle-size: 10vw;
   --blending: hard-light;
+}
+
+/* Media query for mobile */
+@media (max-width: 768px) {
+  .floating-shapes .shape {
+    width: 20vw;  /* Adjust the size for mobile */
+    height: 20vw; /* Adjust the size for mobile */
+  }
 }
 
 @keyframes moveInCircle {
@@ -28,17 +36,22 @@
     }
 
 .floating-shapes-container {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   pointer-events: none;
-  overflow: visable
   filter: url(#goo) blur(40px);
 }
 
 .floating-shapes {
+  position: relative;
+  width: 100%; /* Full container width */
+  height: 100%; /* Full container height */
   border-radius: 50%;
   opacity: 1;
 }
