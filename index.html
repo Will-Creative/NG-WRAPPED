@@ -90,7 +90,7 @@
       align-items: center;
       pointer-events: none;
       z-index: 8
-      filter: url(#combinedFilter) blur(40px); /* Apply the filter to the container */
+      filter: url(#goo) blur(40px); /* Apply the filter to the container */
     }
 
     .floating-shapes {
@@ -235,31 +235,15 @@
 
   </style>
 
- <svg width="0" height="0">
-  <filter id="combinedFilter">
-    <!-- Goo effect -->
-    <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-    <feColorMatrix in="blur" type="matrix" values="
-      1 0 0 0 0
-      0 1 0 0 0
-      0 0 1 0 0
-      0 0 0 18 -8" result="goo" />
-    
-    <!-- Animated noise -->
-    <feTurbulence 
-      type="fractalNoise" 
-      baseFrequency="0.8" 
-      numOctaves="3" 
-      stitchTiles="stitch" 
-      seed="1" 
-      result="noise">
-      <animate attributeName="seed" from="1" to="1000" dur="5s" repeatCount="indefinite" />
-    </feTurbulence>
-    
-    <!-- Blend the goo and noise effects -->
-    <feBlend in="goo" in2="noise" mode="overlay" />
-  </filter>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="goo">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
+          <feBlend in="SourceGraphic" in2="goo" />
+        </filter>
+      </defs>
+    </svg>
 
 </head>
 <body>
