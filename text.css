@@ -6,9 +6,9 @@
 
 .text-container {
   position: absolute;
-  top: 20px; /* Adjust as needed */
+  top: 25%;
   left: 50%;
-  transform: translateX(-50%); /* Center the title horizontally */
+  transform: translateX(-75%); /* Center the title horizontally */
   z-index: 10; /* Ensure the title is above the shapes */
   text-align: center;
 }
@@ -34,6 +34,8 @@
 .scroll-down {
   position: relative;
   bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
   font-size: 1.5rem;
   color: #fff;
   text-align: center;
