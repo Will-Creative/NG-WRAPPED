@@ -6,9 +6,9 @@
 
 .text-container {
   position: absolute;
-  top: 25%;
+  top: 50%;
   left: 50%;
-  transform: translateX(-75%); /* Center the title horizontally */
+  transform: translate(-50%, -50%); /* Center the title horizontally */
   z-index: 10; /* Ensure the title is above the shapes */
   text-align: center;
 }
