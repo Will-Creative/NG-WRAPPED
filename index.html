@@ -236,16 +236,21 @@
   </style>
 
   <svg width="0" height="0">
-    <filter id="noiseFilter">
-      <feTurbulence 
-        type="fractalNoise" 
-        baseFrequency="0.8" 
-        numOctaves="3" 
-        stitchTiles="stitch">
-      </feTurbulence>
-      <feColorMatrix type="saturate" values="0"></feColorMatrix>
-    </filter>
-  </svg>
+  <filter id="animatedNoiseFilter">
+    <feTurbulence 
+      type="fractalNoise" 
+      baseFrequency="0.8" 
+      numOctaves="3" 
+      stitchTiles="stitch" 
+      seed="1">
+      <!-- Animate the seed to create a dynamic noise effect -->
+      <animate attributeName="seed" from="1" to="1000" dur="5s" repeatCount="indefinite" />
+    </feTurbulence>
+    <feColorMatrix type="saturate" values="0"></feColorMatrix>
+    <!-- Blend the noise with the original source -->
+    <feBlend in="SourceGraphic" in2="noise" mode="overlay" />
+  </filter>
+</svg>
   
   <svg xmlns="http://www.w3.org/2000/svg">
       <defs>
