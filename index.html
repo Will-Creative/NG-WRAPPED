@@ -246,12 +246,7 @@
         <animate attributeName="seed" from="1" to="1000" dur="5s" repeatCount="indefinite" />
       </feTurbulence>
       <feColorMatrix in="noise" type="saturate" values="0" result="desaturatedNoise" />
-      
-      <!-- Change opacity of the noise -->
-      <feComponentTransfer in="desaturatedNoise">
-        <feFuncA type="table" tableValues="1 0.12" result="opacityNoise" />
-      </feComponentTransfer>
-      
+    
       <!-- Use feBlend to overlay the noise over the original content -->
       <feBlend in="SourceGraphic" in2="opacityNoise" mode="overlay" result="combinedNoise" />
     </filter>
