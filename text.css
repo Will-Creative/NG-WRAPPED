@@ -1,0 +1,52 @@
+.title-container {
+  position: absolute;
+  top: 20px; /* Adjust as needed */
+  left: 50%;
+  transform: translateX(-50%); /* Center the title horizontally */
+  z-index: 10; /* Ensure the title is above the shapes */
+  text-align: center;
+}
+
+.title-container h1 {
+  font-size: 3rem;
+  color: #fff;
+}
+
+.title-container h2 {
+  font-size: 1rem;
+  color: #fff;
+}
+
+.title-container h3 {
+  font-size: 1rem;
+  color: #201e1fff;
+}
+
+.scroll-down {
+  position: absolute;
+  bottom: 20px;
+  font-size: 1.5rem;
+  color: #fff;
+  text-align: center;
+  opacity: 0;
+  animation: blink 1.5s infinite;
+  z-index: 20;
+}
+
+.scroll-down .arrow {
+  display: block;
+  font-size: 2rem;
+  margin-top: 5px;
+  animation: bounceArrow 1s infinite;
+}
+
+/* Animations */
+@keyframes blink {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+@keyframes bounceArrow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
