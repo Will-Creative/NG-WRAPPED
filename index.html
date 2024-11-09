@@ -18,7 +18,7 @@
       --color5: 180, 180, 50;
       --color-interactive: 140, 100, 255;
       --circle-size: 88%;
-      --blending: soft-light;
+      --blending: hard-light;
     }
 
     body {
@@ -235,15 +235,26 @@
 
   </style>
 
-<svg xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <filter id="goo">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
+<svg width="0" height="0">
+  <defs>
+    <filter id="goo">
+      <!-- Goo effect (blur) -->
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
           <feBlend in="SourceGraphic" in2="goo" />
-        </filter>
-      </defs>
-    </svg>
+      
+      <!-- Animated noise effect -->
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" seed="1" result="noise">
+        <animate attributeName="seed" from="1" to="1000" dur="5s" repeatCount="indefinite" />
+      </feTurbulence>
+      <feColorMatrix in="noise" type="saturate" values="0" result="desaturatedNoise" />
+      
+      <!-- Apply noise on top without blending -->
+      <feComposite in="desaturatedNoise" in2="blur" operator="over" result="combined" />
+      
+    </filter>
+  </defs>
+</svg>
 
 </head>
 <body>
