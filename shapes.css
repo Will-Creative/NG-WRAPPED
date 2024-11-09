@@ -43,7 +43,7 @@ svg {
   pointer-events: none;
   overflow: visible;
   z-index: 8
-  filter: url(#goo) blur(40px);
+  filter: url(#goo);
 }
 
 .floating-shapes {
