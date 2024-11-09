@@ -10,16 +10,19 @@
 .title-container h1 {
   font-size: 3rem;
   color: #fff;
+  transition: opacity var(--fade-in-speed) ease-in-out;
 }
 
 .title-container h2 {
   font-size: 1rem;
   color: #fff;
+  transition: opacity var(--fade-in-speed) ease-in-out;
 }
 
 .title-container h3 {
   font-size: 1rem;
   color: #201e1fff;
+  transition: opacity var(--fade-in-speed) ease-in-out;
 }
 
 .scroll-down {
