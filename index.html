@@ -5,20 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NEXT GEN IMPACT</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="shapes.css">
   <style>
     :root {
       --fade-in-speed: 1s;
       --fade-out-speed: 0.5s;
       --color-bg1: rgba(254, 239, 221, 1);
       --color-bg2: rgba(256, 241, 223, 1);
-      --color1: 18, 113, 255;
-      --color2: 221, 74, 255;
-      --color3: 100, 220, 255;
-      --color4: 200, 50, 50;
-      --color5: 180, 180, 50;
-      --color-interactive: 140, 100, 255;
-      --circle-size: 88%;
-      --blending: hard-light;
     }
 
     body {
@@ -78,25 +71,6 @@
       font-size: 2rem;
       margin-top: 5px;
       animation: bounceArrow 1s infinite;
-    }
-
-    .floating-shapes-container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      pointer-events: none;
-      z-index: 8
-      filter: url(#goo) blur(40px); /* Apply the filter to the container */
-    }
-
-    .floating-shapes {
-      border-radius: 50%;
-      opacity: 1;
     }
 
     .hidden-shapes {
