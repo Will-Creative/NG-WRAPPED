@@ -46,25 +46,7 @@
       opacity: 1;
     }
     
-    .hidden-shapes {
-      opacity: 1;
-    }
-
   </style>
-
-<svg width="0" height="0">
-  <defs>
-    <!-- Goo Filter (Blur) -->
-    <filter id="goo">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="20" result="blur" />
-          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
-          <feBlend in="SourceGraphic" in2="goo" />
-        </filter>
-    </filter>
-  </defs>
-</svg>
-
-
 
 </head>
 <body>
@@ -100,15 +82,7 @@
         <h1 class="text-1xl sm:text-1xl md:text-4xl lg:text-7xl xl:text-9xl font-bold tracking-tight">Section 3 Title</h1>
       
       </div>
-      <div class="floating-shapes-container">
-        <div class="floating-shapes">
-          <div class="shape g1"></div>
-          <div class="shape g2"></div>
-          <div class="shape g3"></div>
-          <div class="shape g4"></div>
-          <div class="shape g5"></div>
-        </div>
-      </div>
+     
        <div class="scroll-down">
           Scroll down
           <span class="arrow">↓</span>
@@ -144,7 +118,6 @@
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       const scrollDown = entry.target.querySelector('.scroll-down');
-      const floatingShapes = entry.target.querySelector('.floating-shapes-container');
       const header = entry.target.querySelector('h1');
 
       if (entry.isIntersecting) {
@@ -157,14 +130,9 @@
           }, 5000);
         }
 
-        // Make floating shapes visible
-        if (floatingShapes) {
-          floatingShapes.classList.remove('hidden-shapes');
-        }
-
         // Typewriter effect logic
         if (header) {
-          // Only clear content if necessary, otherwise, text will persist
+          // Only split text if not already split
           if (!header.querySelector('span')) {
             const text = header.textContent;
             const splitText = text.split(''); // Split text into characters, including spaces
@@ -205,21 +173,12 @@
           scrollDown.style.opacity = 0;
         }
 
-        // Make floating shapes hidden when not in view
-        if (floatingShapes) {
-          floatingShapes.classList.add('hidden-shapes');
-        }
-
-        // Fade out the typewriter text when the section goes out of view (without clearing content)
+        // Reset the opacity of the typewriter text to hide it without clearing content
         if (header) {
           gsap.to(header.querySelectorAll('span'), {
             opacity: 0,
             duration: 0.3, // Quick fade out
             stagger: 0.05, // Time between each letter fade
-            onComplete: () => {
-              // Reset the header text for re-animation when section comes back into view
-              header.innerHTML = header.textContent;
-            }
           });
         }
       }
@@ -231,6 +190,7 @@
     observer.observe(section);
   });
 </script>
+
 
 
 
