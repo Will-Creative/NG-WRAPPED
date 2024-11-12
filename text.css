@@ -17,7 +17,7 @@
 .text-container h1 {
   font-size: 3rem;
   color: #fefffeff;
-  font-family: Impact;
+  font-family: 'Impact', 'Arial Black', sans-serif;
   transition: opacity var(--fade-in-speed) ease-in-out;
 }
 
