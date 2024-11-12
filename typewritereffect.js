@@ -14,6 +14,7 @@ containers.forEach(container => {
       const splitText = header.textContent.split("");
       header.textContent = ""; // Clear the original content
 
+      // Wrap each letter in a span
       splitText.forEach(char => {
         const span = document.createElement("span");
         span.textContent = char;
@@ -42,7 +43,8 @@ containers.forEach(container => {
         });
       },
       onEnterBack: () => typewriterEffect(), // Re-run the animation when scrolling back up
-      once: false // Allow repeated animations when scrolling in and out
+      once: false, // Allow repeated animations when scrolling in and out
+      toggleActions: "play none none reset", // Ensure animation happens on scroll in and resets when scrolling out
     });
   });
 });
