@@ -149,7 +149,7 @@
 
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-
+        
         // Fade in the scroll indicator after a delay
         if (scrollDown) {
           setTimeout(() => {
@@ -163,7 +163,7 @@
         }
 
         // Typewriter effect logic with a delay
-        if (header) {
+        if (header && !header.classList.contains('typed')) {
           const text = header.textContent;
           const splitText = text.split(''); // Split text into characters, including spaces
           header.textContent = ''; // Clear the original content
@@ -191,11 +191,11 @@
               end: "top 20%",   // Fade out when section leaves the viewport
               toggleActions: "play none reverse none", // Play on entry, reverse on exit
               once: false, // Re-trigger the animation each time the section enters the viewport
-              onEnter: () => gsap.to(header.querySelectorAll('span'), { opacity: 1 }),  // Start the animation on scroll in
-              onLeave: () => gsap.to(header.querySelectorAll('span'), { opacity: 0 }), // Fade out on scroll out
-              scrub: true, // Synchronizes the animation with the scroll position
             }
           });
+
+          // Mark header as 'typed' so it doesn't repeat the effect
+          header.classList.add('typed');
         }
       } else {
         entry.target.classList.remove('visible');
@@ -208,6 +208,14 @@
         // Make floating shapes hidden when not in view
         if (floatingShapes) {
           floatingShapes.classList.add('hidden-shapes');
+        }
+
+        // Fade out the header text when section leaves the viewport
+        if (header) {
+          gsap.to(header.querySelectorAll('span'), {
+            opacity: 0,
+            duration: 0.5,
+          });
         }
       }
     });
