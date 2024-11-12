@@ -149,7 +149,7 @@
 
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        
+
         // Fade in the scroll indicator after a delay
         if (scrollDown) {
           setTimeout(() => {
@@ -163,7 +163,9 @@
         }
 
         // Typewriter effect logic with a delay
-        if (header && !header.classList.contains('typed')) {
+        if (header && !header.classList.contains('typewriting')) {
+          header.classList.add('typewriting');  // Add a class to prevent re-triggering
+
           const text = header.textContent;
           const splitText = text.split(''); // Split text into characters, including spaces
           header.textContent = ''; // Clear the original content
@@ -183,19 +185,16 @@
           gsap.to(header.querySelectorAll('span'), {
             opacity: 1,
             duration: 0.05,
-            stagger: 0.05, // Time between each letter animation
+            stagger: 0.15, // Time between each letter animation
             delay: 1, // 1-second delay before the animation starts
             scrollTrigger: {
               trigger: entry.target,
-              start: "top 80%", // Trigger when section is 80% visible
-              end: "top 20%",   // Fade out when section leaves the viewport
+              start: "top 100%", // Trigger when section is 80% visible
+              end: "top 1%",   // Fade out when section leaves the viewport
               toggleActions: "play none reverse none", // Play on entry, reverse on exit
               once: false, // Re-trigger the animation each time the section enters the viewport
             }
           });
-
-          // Mark header as 'typed' so it doesn't repeat the effect
-          header.classList.add('typed');
         }
       } else {
         entry.target.classList.remove('visible');
@@ -210,11 +209,12 @@
           floatingShapes.classList.add('hidden-shapes');
         }
 
-        // Fade out the header text when section leaves the viewport
+        // Fade out the typewriter text when the section goes out of view (but don't clear it)
         if (header) {
           gsap.to(header.querySelectorAll('span'), {
             opacity: 0,
-            duration: 0.5,
+            duration: 0.3, // Quick fade out
+            stagger: 0.05, // Time between each letter fade
           });
         }
       }
