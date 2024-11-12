@@ -133,7 +133,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   
- <script>
+<script>
   // Select all sections on the page
   const sections = document.querySelectorAll('.section');
   
@@ -159,26 +159,27 @@
           floatingShapes.classList.remove('hidden-shapes');
         }
 
-        // Typewriter effect logic
+        // Typewriter effect logic with a delay
         if (header) {
-          const splitText = header.textContent.split("");
+          const splitText = header.textContent.split(/( )/); // Split text into characters, preserving spaces
           header.textContent = ""; // Clear the original content
 
           splitText.forEach(char => {
             const span = document.createElement("span");
-            span.textContent = char;
+            span.textContent = char === " " ? "\u00A0" : char; // Use non-breaking space for spaces
             span.style.opacity = 0; // Start hidden
             header.appendChild(span);
           });
 
+          // GSAP animation with a 1-second delay
           gsap.to(header.querySelectorAll("span"), {
             opacity: 1,
             duration: 0.05,
             stagger: 0.15, // Time between each letter animation
-            delay: 1,
+            delay: 0.8, // 1-second delay before the animation starts
             scrollTrigger: {
               trigger: entry.target,
-              start: "top 90%", // Adjust as needed
+              start: "top 80%", // Adjust as needed
               toggleActions: "play reset play reset", // Repeats on re-entry
               once: false // Allows repeated animations
             }
