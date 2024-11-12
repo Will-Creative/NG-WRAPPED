@@ -14,7 +14,7 @@
     :root {
       --color-bg1: rgba(254, 239, 221, 1);
       --color-bg2: rgba(259, 244, 226, 1);
-      font-size: 32px;
+      font-size: 24px;
     }
 
     body {
@@ -161,18 +161,23 @@
 
         // Typewriter effect logic with a delay
         if (header) {
-          const splitText = header.textContent.split(""); // Split text into characters, including spaces
-          header.textContent = ""; // Clear the original content
+          const text = header.textContent;
+          const splitText = text.split(''); // Split text into characters, including spaces
+          header.textContent = ''; // Clear the original content
 
           splitText.forEach(char => {
-            const span = document.createElement("span");
-            span.textContent = char;
+            const span = document.createElement('span');
+            if (char === ' ') {
+              span.innerHTML = '&nbsp;'; // Non-breaking space to preserve the space
+            } else {
+              span.textContent = char;
+            }
             span.style.opacity = 0; // Start hidden
             header.appendChild(span);
           });
 
           // GSAP animation with a 1-second delay
-          gsap.to(header.querySelectorAll("span"), {
+          gsap.to(header.querySelectorAll('span'), {
             opacity: 1,
             duration: 0.05,
             stagger: 0.05, // Time between each letter animation
