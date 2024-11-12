@@ -57,13 +57,6 @@
   animation: bounceArrow 1s infinite;
 }
 
-/* Media Queries */
-@media (max-width: 640px) {
-  .text-container h1 {
-    font-size: 2rem; /* Smaller size for phone screens */
-  }
-}
-
 /* Animations */
 @keyframes blink {
   0%, 100% { opacity: 0; }
