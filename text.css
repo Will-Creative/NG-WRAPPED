@@ -2,6 +2,7 @@
     :root {
       --fade-in-speed: 1s;
       --fade-out-speed: 0.5s;
+     font-size: 32px; 
     }
 
 .text-container {
