@@ -118,6 +118,7 @@
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       const scrollDown = entry.target.querySelector('.scroll-down');
+      const floatingShapes = entry.target.querySelector('.floating-shapes-container');
       const header = entry.target.querySelector('h1');
 
       if (entry.isIntersecting) {
@@ -145,25 +146,29 @@
               } else {
                 span.textContent = char;
               }
-              span.style.opacity = 0; // Start hidden
               header.appendChild(span);
             });
           }
 
           // GSAP animation with a 1-second delay and ScrollTrigger
-          gsap.to(header.querySelectorAll('span'), {
-            opacity: 1,
-            duration: 0.05,
-            stagger: 0.15, // Time between each letter animation
-            delay: 1, // 1-second delay before the animation starts
-            scrollTrigger: {
-              trigger: entry.target,
-              start: "top 100%", // Trigger when section is 100% visible
-              end: "top 1%",     // Fade out when section leaves the viewport
-              toggleActions: "play none reverse none", // Play on entry, reverse on exit
-              once: false, // Re-trigger the animation each time the section enters the viewport
+          gsap.fromTo(header.querySelectorAll('span'), 
+            {
+              opacity: 0, // Start hidden
+            },
+            {
+              opacity: 1, // Fade in
+              duration: 0.05,
+              stagger: 0.15, // Time between each letter animation
+              delay: 1, // 1-second delay before the animation starts
+              scrollTrigger: {
+                trigger: entry.target,
+                start: "top 100%", // Trigger when section is 100% visible
+                end: "top 99%",     // Fade out when section leaves the viewport
+                toggleActions: "play none reverse none", // Play on entry, reverse on exit
+                once: false, // Re-trigger the animation each time the section enters the viewport
+              }
             }
-          });
+          );
         }
       } else {
         entry.target.classList.remove('visible');
@@ -177,7 +182,7 @@
         if (header) {
           gsap.to(header.querySelectorAll('span'), {
             opacity: 0,
-            duration: 0.3, // Quick fade out
+            duration: 0.1, // Quick fade out
             stagger: 0.05, // Time between each letter fade
           });
         }
@@ -190,11 +195,5 @@
     observer.observe(section);
   });
 </script>
-
-
-
-
-
-
 </body>
 </html>
