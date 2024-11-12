@@ -174,10 +174,11 @@
           gsap.to(header.querySelectorAll("span"), {
             opacity: 1,
             duration: 0.05,
-            stagger: 0.05, // Time between each letter animation
+            stagger: 0.15, // Time between each letter animation
+            delay: 1,
             scrollTrigger: {
               trigger: entry.target,
-              start: "top 80%", // Adjust as needed
+              start: "top 90%", // Adjust as needed
               toggleActions: "play reset play reset", // Repeats on re-entry
               once: false // Allows repeated animations
             }
