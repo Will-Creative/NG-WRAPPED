@@ -161,12 +161,12 @@
 
         // Typewriter effect logic with a delay
         if (header) {
-          const splitText = header.textContent.split(/( )/); // Split text into characters, preserving spaces
+          const splitText = header.textContent.split(""); // Split text into characters, including spaces
           header.textContent = ""; // Clear the original content
 
           splitText.forEach(char => {
             const span = document.createElement("span");
-            span.textContent = char === " " ? "\u00A0" : char; // Use non-breaking space for spaces
+            span.textContent = char;
             span.style.opacity = 0; // Start hidden
             header.appendChild(span);
           });
@@ -175,8 +175,8 @@
           gsap.to(header.querySelectorAll("span"), {
             opacity: 1,
             duration: 0.05,
-            stagger: 0.15, // Time between each letter animation
-            delay: 0.8, // 1-second delay before the animation starts
+            stagger: 0.05, // Time between each letter animation
+            delay: 1, // 1-second delay before the animation starts
             scrollTrigger: {
               trigger: entry.target,
               start: "top 80%", // Adjust as needed
