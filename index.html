@@ -136,7 +136,6 @@
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       const scrollDown = entry.target.querySelector('.scroll-down');
-      const title = entry.target.querySelector('h1');
       const floatingShapes = entry.target.querySelector('.floating-shapes-container');
 
       if (entry.isIntersecting) {
