@@ -25,6 +25,11 @@
                0 0 15px rgba(255, 255, 255, 0.3);
 }
 
+.text-container h1 span {
+    display: inline-block;
+    opacity: 0;
+  }
+
 .text-container h2 {
   font-size: 1rem;
   color: #fff;
