@@ -130,13 +130,19 @@
   </div>
 </body>
 
-
-  <script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  
+ <script>
+  // Select all sections on the page
   const sections = document.querySelectorAll('.section');
+  
+  // Create an Intersection Observer instance
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       const scrollDown = entry.target.querySelector('.scroll-down');
       const floatingShapes = entry.target.querySelector('.floating-shapes-container');
+      const header = entry.target.querySelector('h1');
 
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
@@ -151,6 +157,31 @@
         // Make floating shapes visible
         if (floatingShapes) {
           floatingShapes.classList.remove('hidden-shapes');
+        }
+
+        // Typewriter effect logic
+        if (header) {
+          const splitText = header.textContent.split("");
+          header.textContent = ""; // Clear the original content
+
+          splitText.forEach(char => {
+            const span = document.createElement("span");
+            span.textContent = char;
+            span.style.opacity = 0; // Start hidden
+            header.appendChild(span);
+          });
+
+          gsap.to(header.querySelectorAll("span"), {
+            opacity: 1,
+            duration: 0.05,
+            stagger: 0.05, // Time between each letter animation
+            scrollTrigger: {
+              trigger: entry.target,
+              start: "top 80%", // Adjust as needed
+              toggleActions: "play reset play reset", // Repeats on re-entry
+              once: false // Allows repeated animations
+            }
+          });
         }
       } else {
         entry.target.classList.remove('visible');
@@ -168,15 +199,12 @@
     });
   }, { threshold: 0.5 });
 
+  // Observe each section
   sections.forEach(section => {
     observer.observe(section);
   });
-</script> 
+</script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-<script src="typewritereffect.js"></script>
-  
 
 </body>
 </html>
