@@ -13,7 +13,7 @@
   text-align: left;
   justify-content: center;
   align-items: center;
-  visibility: hidden; /* Initially hidden, but will be shown when section becomes visible */
+  visibility: visible;
 }
 
 .text-container h1 {
