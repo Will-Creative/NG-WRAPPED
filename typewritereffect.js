@@ -10,18 +10,33 @@ containers.forEach(container => {
   headers.forEach(header => {
     // Function to animate the typewriter effect
     const typewriterEffect = () => {
-      // Split the text content into individual letters and wrap them in spans
-      const splitText = header.textContent.split("");
+      // Preserve spaces and line breaks by replacing them with HTML entities
+      const text = header.textContent;
+      const formattedText = text.replace(/\s/g, "&nbsp;").replace(/\n/g, "<br>");
+
+      // Create a temporary div to hold the formatted text (with preserved spaces/line breaks)
+      const tempDiv = document.createElement("div");
+      tempDiv.innerHTML = formattedText;
+
+      // Clear the original header content and append the formatted text
       header.textContent = ""; // Clear the original content
 
-      splitText.forEach(char => {
-        const span = document.createElement("span");
-        span.textContent = char;
-        span.style.opacity = 0; // Start hidden
-        header.appendChild(span);
+      // Iterate through the child nodes (spans) and wrap each one in a span for animation
+      tempDiv.childNodes.forEach(child => {
+        if (child.nodeType === Node.TEXT_NODE) {
+          const span = document.createElement("span");
+          span.textContent = child.textContent;
+          span.style.opacity = 0; // Start hidden
+          header.appendChild(span);
+        } else if (child.nodeName === "BR") {
+          // Add a span for line breaks
+          const span = document.createElement("span");
+          span.innerHTML = "<br>";
+          header.appendChild(span);
+        }
       });
 
-      // Animate each letter
+      // Animate each letter (and line breaks)
       gsap.to(header.querySelectorAll("span"), {
         opacity: 1,
         duration: 0.05,
