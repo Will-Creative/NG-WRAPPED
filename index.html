@@ -137,6 +137,9 @@
   // Select all sections on the page
   const sections = document.querySelectorAll('.section');
   
+  // Register GSAP ScrollTrigger plugin
+  gsap.registerPlugin(ScrollTrigger);
+
   // Create an Intersection Observer instance
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -176,7 +179,7 @@
             header.appendChild(span);
           });
 
-          // GSAP animation with a 1-second delay
+          // GSAP animation with a 1-second delay and ScrollTrigger
           gsap.to(header.querySelectorAll('span'), {
             opacity: 1,
             duration: 0.05,
@@ -184,9 +187,13 @@
             delay: 1, // 1-second delay before the animation starts
             scrollTrigger: {
               trigger: entry.target,
-              start: "top 80%", // Adjust as needed
-              toggleActions: "play reset play reset", // Repeats on re-entry
-              once: false // Allows repeated animations
+              start: "top 80%", // Trigger when section is 80% visible
+              end: "top 20%",   // Fade out when section leaves the viewport
+              toggleActions: "play none reverse none", // Play on entry, reverse on exit
+              once: false, // Re-trigger the animation each time the section enters the viewport
+              onEnter: () => gsap.to(header.querySelectorAll('span'), { opacity: 1 }),  // Start the animation on scroll in
+              onLeave: () => gsap.to(header.querySelectorAll('span'), { opacity: 0 }), // Fade out on scroll out
+              scrub: true, // Synchronizes the animation with the scroll position
             }
           });
         }
@@ -211,6 +218,7 @@
     observer.observe(section);
   });
 </script>
+
 
 
 </body>
