@@ -28,9 +28,8 @@
     }
 
     .scroll-container {
-      height: 100dvh;
-      padding-top: env(safe-area-inset-top);
-      padding-bottom: env(safe-area-inset-bottom);
+      height: 100vh;
+      position: fixed;
       overflow-y: scroll;
       scroll-snap-type: y mandatory;
       -webkit-overflow-scrolling: touch;
@@ -39,10 +38,8 @@
     }
 
     .section {
-      padding-top: env(safe-area-inset-top);
-      padding-bottom: env(safe-area-inset-bottom);
       scroll-snap-align: start;
-      min-height: 100vh;
+      height: 100vh;
       display: flex;
       justify-content: center;
       flex-direction: column;
