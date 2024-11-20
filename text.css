@@ -10,7 +10,7 @@
   top: 30px;
   left: 30px;
   z-index: 10;
-  padding: 16px;
+  padding: 24px;
   text-align: left; /* for inline text alignment */
   display: flex; /* enables flexbox */
   justify-content: center; /* aligns items horizontally */
